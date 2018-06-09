@@ -26,3 +26,18 @@
 *.exe
 *.out
 *.app
+
+#lixo do VS
+*.sln
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.db
+*.opendb
+*.ipch
+*.suo
+*.log
+*.tlog
+*.idb
+*.pdb
+*.ilk
