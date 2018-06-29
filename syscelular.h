@@ -8,72 +8,97 @@
 
 using namespace std;
 
+namespace celular {
 
-class Cliente
-{
-private:
-	string nome;
-	string cpf_cnpj;
-	string endereco;
-
-
-public:
-
-	string getNome();
-	string getCpf_cnpj();
-	string getEndereco();
-};
+	class Cliente
+	{
+	private:
+		string nomeCliente;
+		string cpf_cnpj_;
+		string endereco;
+		string fone;
 
 
-class Chamada
-{
-private:
+	public:
+		Cliente(string name, string id, string add, string pho);
+		Cliente(const Cliente &a);
+		Cliente();
+
+		string getnomeCliente()const;
+		string getcpf_cnpj()const;
+		string getendereco()const;
+		string getfone()const;
+		string get_ficha()const;
+		void setnomeCliente(std::string name);
+		void setcpf_cnpj(std::string id);
+		void setendereco(std::string add);
+		void setfone(std::string pho);
+	};
 
 
-public:
-
-};
-
-
-
-class Celular
-{
-private:
-	string numero;
-	Cliente dono;
-	list<Chamada> listaChamadas;
-	bool assinatura;       //true representa assinatura pós-pago. false representa cartão pré-pago
-
-public:
-	string getNumero();
-	Cliente getDono();
-	list<Chamada> getListaChamadas();
-	bool getAssinatura();
-};
+	class Chamada
+	{
+	private:
 
 
-class Pospago : Celular
-{
-private:
+	public:
 
-public:
-
-};
-
-class Prepago : Celular
-{
-private:
-
-public:
-
-
-};
+	};
 
 
 
+	class Celular
+	{
+	private:
+		string numero;
+		Cliente dono;
+		list<Chamada> listaChamadas;
+		bool assinatura;       //true representa assinatura pós-pago. false representa cartão pré-pago
+
+	public:
+		string getNumero();
+		Cliente getDono();
+		list<Chamada> getListaChamadas();
+		bool getAssinatura();
+	};
+
+
+	class Pospago : Celular
+	{
+	private:
+
+	public:
+
+	};
+
+	class Prepago : Celular
+	{
+	private:
+
+	public:
+
+
+	};
+
+
+	class Data
+	{
+	private:
+
+	public:
+
+		
+
+		int get_dia();
+		int get_mes();
+		int get_ano();
 
 
 
+	};
+
+
+}
 
 
 

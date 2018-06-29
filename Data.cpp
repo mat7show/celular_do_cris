@@ -2,9 +2,10 @@
 #include <string>
 #include <ctime>
 #include <sstream>
+#include <chrono>
 
-#include "banksys.h"
-using namespace banco;
+#include "syscelular.h"
+
 
 // dd|mm|aaaa
 Data::Data(std::string dataformatada)
