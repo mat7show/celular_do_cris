@@ -5,7 +5,7 @@
 using namespace std;
 using namespace celular;
 
-Cliente::Cliente(string name, string id, string add, string pho)
+Cliente::Cliente(string name, string id, string add)
 {
   this->nomeCliente = name;
   this->cpf_cnpj_ = id;

@@ -16,7 +16,7 @@ namespace celular {
 		string nomeCliente;
 		string cpf_cnpj_;
 		string endereco;
-		string fone;
+
 
 
 	public:
@@ -27,12 +27,12 @@ namespace celular {
 		string getnomeCliente()const;
 		string getcpf_cnpj()const;
 		string getendereco()const;
-		string getfone()const;
+
 		string get_ficha()const;
 		void setnomeCliente(std::string name);
 		void setcpf_cnpj(std::string id);
 		void setendereco(std::string add);
-		void setfone(std::string pho);
+
 	};
 
 
@@ -50,16 +50,20 @@ namespace celular {
 	class Celular
 	{
 	private:
-		string numero;
-		Cliente dono;
-		list<Chamada> listaChamadas;
-		bool assinatura;       //true representa assinatura pós-pago. false representa cartão pré-pago
+		string numero_;
+		Cliente dono_;
+		list<Chamada> listaChamadas_;
+		bool plano_;       //true representa assinatura pï¿½s-pago. false representa cartï¿½o prï¿½-pago
 
 	public:
 		string getNumero();
 		Cliente getDono();
 		list<Chamada> getListaChamadas();
-		bool getAssinatura();
+		bool getPlano();
+		void setNumero(string numero);
+		void setDono(const Cliente &dono);
+		void setlistaChamadas(list<Chamada> listaChamadas);
+		void setPlano(bool plano);
 	};
 
 
@@ -87,7 +91,7 @@ namespace celular {
 
 	public:
 
-		
+
 
 		int get_dia();
 		int get_mes();
@@ -112,4 +116,3 @@ namespace celular {
 
 
 #endif
-
