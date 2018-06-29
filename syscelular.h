@@ -28,7 +28,7 @@ namespace celular {
 		string getcpf_cnpj()const;
 		string getendereco()const;
 
-		string get_ficha()const;
+		//string get_ficha()const;
 		void setnomeCliente(std::string name);
 		void setcpf_cnpj(std::string id);
 		void setendereco(std::string add);
@@ -56,10 +56,12 @@ namespace celular {
 		bool plano_;       //true representa assinatura p�s-pago. false representa cart�o pr�-pago
 
 	public:
-		string getNumero();
-		Cliente getDono();
-		list<Chamada> getListaChamadas();
-		bool getPlano();
+		Celular(string numero, const Cliente &dono, list<Chamada> listaChamadas, bool plano);
+		Celular(const Celular &a);
+		string getNumero ()const;
+		Cliente getDono ()const;
+		list<Chamada> getlistaChamadas ()const;
+		bool getPlano()const;
 		void setNumero(string numero);
 		void setDono(const Cliente &dono);
 		void setlistaChamadas(list<Chamada> listaChamadas);

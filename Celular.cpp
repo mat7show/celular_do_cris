@@ -1,12 +1,13 @@
 #include <string>
 #include <vector>
+#include <list>
 #include "syscelular.h"
 using namespace std;
 using namespace celular;
 
 
 
-Celular::Celular(string numero,const Cliente &dono, list<Chamada> listaChamadas, bool plano)
+Celular::Celular(string numero, const Cliente &dono, list<Chamada> listaChamadas, bool plano)
 {
   this->numero_ = numero;
   this->dono_ = dono;
@@ -16,13 +17,13 @@ Celular::Celular(string numero,const Cliente &dono, list<Chamada> listaChamadas,
 }
 
 
-Cliente::Cliente(const Cliente &a)
+Celular::Celular(const Celular &a)
 {
   this->numero_ = a.numero_;
   this->dono_ = a.dono_;
   this->listaChamadas_ = a.listaChamadas_;
   this->plano_ = a.plano_;
-
+}
 string Celular::getNumero ()const
 {
 return numero_;
@@ -38,7 +39,7 @@ list<Chamada> Celular::getlistaChamadas ()const
 return listaChamadas_;
 }
 bool Celular::getPlano()const{
-  return plano_
+  return plano_;
 }
 
 
