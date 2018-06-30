@@ -7,7 +7,7 @@ using namespace operadora;
 
 
 
-Celular::Celular(string numero, const Cliente &dono, list<Chamada> listaChamadas, bool plano)
+Celular::Celular(string numero, const Cliente &dono, list<Chamada> listaChamadas)
 {
   this->numero_ = numero;
   this->dono_ = dono;
@@ -37,7 +37,7 @@ list<Chamada> Celular::getlistaChamadas ()const
 return listaChamadas_;
 }
 
-
+bool get_plano();
 
 void Celular::setNumero(string numero)
 {
@@ -51,4 +51,3 @@ void Celular::setlistaChamadas(list<Chamada> listaChamadas)
 {
 this->listaChamadas_ =listaChamadas;
 }
-

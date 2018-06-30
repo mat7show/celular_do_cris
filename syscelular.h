@@ -1,12 +1,11 @@
-#pragma once
 
-#ifndef SISTEMA_DE_CELULAR
-#define SISTEMA_DE_CELULAR
+#ifndef SYSCELULAR_H
+#define SYSCELULAR_H
 
 #include <string>
 #include <list>
 
-using namespace std;
+//using namespace std;
 
 
 namespace operadora {
@@ -54,72 +53,7 @@ namespace operadora {
 		bool operator>(DataDMA d);
 		bool operator>=(DataDMA d);
 
-
-
-
-
 	};
-
-	class Interface : Operadora
-	{
-	private:
-
-	public:
-
-	};
-
-	class Operadora
-	{
-	private: 
-		list<Cliente> clientes_;
-		list<Celular> celulares_;
-		string nomeOperadora_;
-
-	public:
-		Operadora();
-		Operadora(string nome, list<Cliente> clientes, list<Celular> contas);
-
-		void inserirCliente(const Cliente &C);
-		void criarCelular(const Cliente &C);
-		void excluirCliente(string cpf_cnpj);
-		void excluirConta(int numConta);
-		string obterExtrato(int numConta)const;
-		string obterExtrato(int numConta, DataDMA dInicial)const;
-		string obterExtrato(int numConta, DataDMA dInicial, DataDMA dFinal)const;
-		list<Cliente> obterListaClientes()const;
-		list<Celular> obterListaCelulares()const;
-
-
-
-
-	};
-
-
-
-	class Cliente
-	{
-	private:
-		string nomeCliente;
-		string cpf_cnpj_;
-		string endereco;
-
-
-
-	public:
-		Cliente(string name, string id, string add);
-		Cliente(const Cliente &a);
-		Cliente();
-
-		string getnomeCliente()const;
-		string getcpf_cnpj()const;
-		string getendereco()const;
-
-		void setnomeCliente(std::string name);
-		void setcpf_cnpj(std::string id);
-		void setendereco(std::string add);
-
-	};
-
 
 	class Chamada
 	{
@@ -131,50 +65,124 @@ namespace operadora {
 	};
 
 
+	class Cliente
+	{
+	private:
+		std::string nomeCliente;
+		std::string cpf_cnpj_;
+		std::string endereco;
+
+
+
+	public:
+		Cliente(std::string name, std::string id, std::string add);
+		Cliente(const Cliente &a);
+		Cliente();
+
+		std::string getnomeCliente()const;
+		std::string getcpf_cnpj()const;
+		std::string getendereco()const;
+
+		void setnomeCliente(std::string name);
+		void setcpf_cnpj(std::string id);
+		void setendereco(std::string add);
+
+	};
 
 	class Celular
 	{
 	private:
-		string numero_;
+		std::string numero_;
 		Cliente dono_;
-		list<Chamada> listaChamadas_;
-		
+		std::list<Chamada> listaChamadas_;
+
+
 
 	public:
-		Celular(string numero, const Cliente &dono, list<Chamada> listaChamadas, bool plano);
+		Celular(std::string numero, const Cliente &dono, std::list<Chamada> listaChamadas);
 		Celular(const Celular &a);
-		string getNumero ()const;
+
+		std::string getNumero ()const;
 		Cliente getDono ()const;
-		list<Chamada> getlistaChamadas ()const;
-		
-		void setNumero(string numero);
+		std::list<Chamada> getlistaChamadas ()const;
+
+		void setNumero(std::string numero);
 		void setDono(const Cliente &dono);
-		void setlistaChamadas(list<Chamada> listaChamadas);
-		void setPlano(bool plano);
+		void setlistaChamadas(std::list<Chamada> listaChamadas);
+
+		virtual bool get_plano();
+
 	};
 
 
-	class Pospago : Celular
+	class Prepago : public Celular
 	{
 	private:
 		double creditos_;
 		DataDMA validade_;
-
+		bool plano;
 	public:
-		double get_creditos();
-		DataDMA get_validade();
+		Prepago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, double creditos,DataDMA validade );
+		double get_creditos ()const;
+		DataDMA get_validade ()const;
+		void set_creditos(double creditos);
+		void set_creditos(DataDMA vencimento);
+		bool get_plano();
 
 	};
 
-	class Prepago : Celular
+	class Pospago : public Celular
 	{
 	private:
 		DataDMA vencimento_;
-
+		bool plano;
 	public:
-		DataDMA get_vencimento();
+		Pospago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, double creditos,const DataDMA &vencimento);
+		DataDMA get_vencimento ()const;
+		void set_vencimento(const DataDMA &vencimento);
+		bool get_plano();
 
 	};
+
+
+
+	class Operadora
+	{
+	private:
+		std::list<Cliente> clientes_;
+		std::list<Celular> celulares_;
+		std::string nomeOperadora_;
+
+	public:
+		Operadora();
+		Operadora(std::string nome, std::list<Cliente> clientes, std::list<Celular> contas);
+
+		void inserirCliente(const Cliente &C);
+		void criarCelular(const Cliente &C);
+		void excluirCliente(std::string cpf_cnpj);
+		void excluirConta(int numConta);
+		std::string obterExtrato(int numConta)const;
+		std::string obterExtrato(int numConta, DataDMA dInicial)const;
+		std::string obterExtrato(int numConta, DataDMA dInicial, DataDMA dFinal)const;
+		std::list<Cliente> obterListaClientes()const;
+		std::list<Celular> obterListaCelulares()const;
+
+	};
+
+	class Interface : public Operadora{
+	private:
+
+	public:
+
+	};
+
+
+
+
+
+
+
+
 
 
 	class Ligacao
@@ -196,7 +204,7 @@ namespace operadora {
 		int get_duracao()const;
 	};
 
-	
+
 
 
 }
