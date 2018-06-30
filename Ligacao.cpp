@@ -2,41 +2,37 @@
 #include <string>
 #include <vector>
 #include "syscelular.h"
-using namespace celular;
+using namespace operadora;
 
-Movimentacao::Movimentacao(Data dataMov, std::string descr, char dc, double valor)
+Ligacao::Ligacao(DataDMA dataLig, int duracao)
 {
-  dataMov_ = dataMov;
-  descricao_ = descr;
-  debito_credito = dc;
-  valor_ = valor;
+  data_ligacao_ = dataLig;
+  //TEMQ COLOCAR HORA_LIGACAO AQUI COMO ENTRADA
+  //hora_ligacao = horalig;
+  duracao_ = duracao;
 
 }
 
-Movimentacao::Movimentacao(const Movimentacao &M)
+Ligacao::Ligacao(const Ligacao &M)
 {
-  dataMov_ = M.dataMov_;
-  descricao_ = M.descricao_;
-  debito_credito = M.debito_credito;
-  valor_ = M.valor_;
+	data_ligacao_ = M.data_ligacao_;
+	//hora_ligacao = M.hora_ligacao;
+	duracao_ = M.duracao_;
 }
 
-Data Movimentacao::get_data_obj()const
+DataDMA Ligacao::get_data_ligacao()const
 {
-  return dataMov_;
+  return data_ligacao_;
 }
 
-std::string Movimentacao::get_descricao()const
-{
-  return descricao_;
-}
 
-double Movimentacao::get_valor_mov()const
-{
-  return valor_;
-}
 
-char Movimentacao::get_dc()const
+//Hora get_hora_ligacao()const
+//{
+//	return hora_ligacao_
+//}
+
+int Ligacao::get_duracao()const
 {
-  return debito_credito;
+  return duracao_;
 }

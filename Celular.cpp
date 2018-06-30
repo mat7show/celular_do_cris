@@ -3,7 +3,7 @@
 #include <list>
 #include "syscelular.h"
 using namespace std;
-using namespace celular;
+using namespace operadora;
 
 
 
@@ -12,7 +12,6 @@ Celular::Celular(string numero, const Cliente &dono, list<Chamada> listaChamadas
   this->numero_ = numero;
   this->dono_ = dono;
   this->listaChamadas_ = listaChamadas;
-  this->plano_ = plano;
 
 }
 
@@ -22,7 +21,6 @@ Celular::Celular(const Celular &a)
   this->numero_ = a.numero_;
   this->dono_ = a.dono_;
   this->listaChamadas_ = a.listaChamadas_;
-  this->plano_ = a.plano_;
 }
 string Celular::getNumero ()const
 {
@@ -38,9 +36,7 @@ list<Chamada> Celular::getlistaChamadas ()const
 {
 return listaChamadas_;
 }
-bool Celular::getPlano()const{
-  return plano_;
-}
+
 
 
 void Celular::setNumero(string numero)
@@ -56,7 +52,3 @@ void Celular::setlistaChamadas(list<Chamada> listaChamadas)
 this->listaChamadas_ =listaChamadas;
 }
 
-void Celular::setPlano(bool plano)
-{
-  this->plano_=plano;
-}

@@ -3,7 +3,7 @@
 #include <vector>
 #include "syscelular.h"
 using namespace std;
-using namespace celular;
+using namespace operadora;
 
 Cliente::Cliente(string name, string id, string add)
 {

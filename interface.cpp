@@ -3,12 +3,12 @@
 #include <vector>
 #include "syscelular.h"
 using namespace std;
-using namespace celular;
+using namespace operadora;
 
 Interface::Interface(){
 }
 
-Interface::Interface(string nome,vector<Cliente> clientes,vector<Conta> contas):Banco(nome,clientes,contas){
+Interface::Interface(string nome,vector<Cliente> clientes,list<Celular> contas):Banco(nome,clientes,contas){
 
 }
 
