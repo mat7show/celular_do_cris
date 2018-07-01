@@ -51,7 +51,7 @@ namespace tp2 {
 		ExceptData(std::string e);
 		std::string what();
 
-	};	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
+	};/*	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
 	{
 	private:
 		std::string erro_;
@@ -59,7 +59,7 @@ namespace tp2 {
 		ExceptOutras(std::string what);
 
 	};
-
+*/
 
 
 	class Hora
@@ -170,11 +170,11 @@ namespace tp2 {
 		std::string numero_;
 		Cliente dono_;
 		std::vector<Ligacao> listaChamadas_;
-		
+
 
 	public:
 
-		
+
 
 		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
@@ -205,7 +205,7 @@ namespace tp2 {
 		DataDMA validade_;
 		static const int custo_p_min = 3;
 
-		
+
 
 	public:
 		Prepago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos, const DataDMA &validade);
@@ -301,7 +301,7 @@ namespace tp2 {
 		void extratoliga();
 		void printacliente(const Cliente &clientet)const;
 		void listaclientes()const;
-
+		void printacelular(const Celular &celular)const;
 
 
 

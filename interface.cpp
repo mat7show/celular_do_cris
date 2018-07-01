@@ -14,7 +14,7 @@ Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular*> celul
 
 int Interface::menu()
 {
-  int menu;
+  int menu=0;
 
 	cout << endl << endl
 		 << "      {{{{{{{{{{}}}}}}}}}}" << endl
@@ -272,7 +272,7 @@ void Interface::listacredval(){
   getline(cin,numero);
   this->vercredval(numero)
 }
-*/
+
 
 void Interface::extratoliga()
 {
@@ -303,7 +303,7 @@ DataDMA dfim(dfinal,mfinal,afinal);
 
 temp = this->obterExtrato(numero,dini,dfim);
 }
-
+*/
 
 void Interface::listaclientes()const{
 std::vector<Cliente> temp;
@@ -328,7 +328,9 @@ celulartemp =*i;
 this->printaplano(celulartemp);
 }
 }
+*/
 
+/*
 void Interface::listacelulares()const{
 std::vector<Celular*> temp;
 Celular celulartemp;
@@ -340,7 +342,9 @@ celulartemp =*i;
 this->printacelular(celulartemp);
 }
 }
+*/
 
+/*
 void Interface::listavencimentos()const{
 std::vector<Celular*> temp;
 Celular celulartemp;
@@ -361,9 +365,12 @@ void Interface::printacliente(const Cliente &clientet)const
   cout<<"CPF/CNPJ: "<< clientet.getcpf_cnpj() <<endl;
   cout<<"Endereço: "<< clientet.getendereco() <<endl;
 }
-/*
-void Interface::printaconta(const Conta &contat)const{
-  cout<<endl<<endl<<"Numero da conta: "<< contat.get_num_conta();
-}
 
-}*/
+void Interface::printacelular(const Celular &celular)const{
+  Cliente c = celular.getDono();
+  cout<<endl<<endl<<"Numero: "<< celular.getNumero();
+  cout<<endl<<endl<<"Dono: ";
+  this->printacliente(c);
+
+
+}
