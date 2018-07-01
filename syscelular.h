@@ -8,6 +8,50 @@
 //using namespace std;
 
 
+
+
+
+class ExceptCreditoIns
+{
+private:
+	std::string erro_;
+
+public:
+	ExceptCreditoIns(std::string e);
+	std::string what();
+};
+
+class ExceptVetorCheio
+{
+private:
+	std::string erro_;
+public:
+	ExceptVetorCheio(std::string e);
+	std::string what();
+
+};
+
+class ExceptContaInex
+{
+private:
+	std::string erro_;
+
+public:
+	ExceptContaInex(std::string e);
+	std::string what();
+
+};
+
+
+class ExceptOutras : public std::runtime_error
+{
+public:
+	ExceptOutras(const char* what);
+};
+
+
+
+
 namespace operadora {
 
 
@@ -53,7 +97,6 @@ namespace operadora {
 		int get_dia() const;
 		int get_mes() const;
 		int get_ano() const;
-		std::string get_data_formatada() const;
 		bool valida();
 
 		DataDMA operator+(DataDMA d);
