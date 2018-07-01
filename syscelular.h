@@ -10,36 +10,56 @@
 
 namespace tp2 {
 
+	class ExceptCreditoIns
 
-	class ExceptContaInex{
-public:
-	ExceptContaInex(std::string e);
-	std::string what();
+	{
+	private:
+		std::string erro_;
 
-};
+	public:
+		ExceptCreditoIns(std::string e);
+		std::string what();
+	};
 
-class ExceptData
-{
-private:
-	std::string erro_;
+	class ExceptVetorCheio
+	{
+	private:
+		std::string erro_;
+	public:
+		ExceptVetorCheio(std::string e);
+		std::string what();
 
-public:
-	ExceptData(std::string e);
-	std::string what();
+	};
 
-};
+	class ExceptContaInex
+	{
+	private:
+		std::string erro_;
 
+	public:
+		ExceptContaInex(std::string e);
+		std::string what();
 
-class ExceptOutras : public std::runtime_error //ja vem com funcao what();
-{
-private:
-	std::string erro_;
-public:
-	ExceptOutras(std::string what);
+	};
 
-};
+	class ExceptData
+	{
+	private:
+		std::string erro_;
 
-
+	public:
+		ExceptData(std::string e);
+		std::string what();
+
+	};	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
+	{
+	private:
+		std::string erro_;
+	public:
+		ExceptOutras(std::string what);
+
+	};
+
 
 
 	class Hora
@@ -248,7 +268,7 @@ public:
 		std::vector<Cliente> obterListaClientes()const;
 		std::vector<Celular> obterListaCelulares()const;
 
-		void registrar_ligacao(const Celular &C, const DataDMA &dataLig, int duracao, Hora horalig);
+		void registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig);
 		std::vector<Celular> listar_vencidos();
 
 

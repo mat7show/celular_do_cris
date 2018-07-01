@@ -35,7 +35,7 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 {
 	vector<Ligacao> ent;
 	char buff[20];
-	itoa(Celular::prox_numero, buff, 10);
+	_itoa_s(Celular::prox_numero, buff, 10);
 	string numero(buff);
 	DataDMA h;
 	h = h + 30;

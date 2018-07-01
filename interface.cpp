@@ -365,5 +365,5 @@ void Interface::printacliente(const Cliente &clientet)const
 void Interface::printaconta(const Conta &contat)const{
   cout<<endl<<endl<<"Numero da conta: "<< contat.get_num_conta();
 }
-*/
-}
+
+}*/
