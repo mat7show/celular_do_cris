@@ -264,16 +264,36 @@ void Interface::verconta()
 
 }
 
-/*
+
 void Interface::listacredval(){
   string numero;
   cout <<endl<< "Insira o numero do celular"<<endl;
   getline(cin,numero);
   getline(cin,numero);
-  this->vercredval(numero)
+  vector<Celular*> temp;
+  temp = this->obterListaCelulares();
+    for (size_t i = 0; i<temp.size(); i++)
+    {
+      if (temp[i]->getNumero() == numero)
+      {
+      double a =  temp[i]->get_credfat();
+      DataDMA b = temp[i]->get_vencimento();
+
+      int dia = b.get_dia();
+      int mes = b.get_mes();
+      int ano = b. get_ano();
+
+      cout<< "Creditos : "<<a<<endl;
+      cout<< "Validade: "<<dia<<"/"<<mes<<"/"<<ano;
+
+
+      }
+    }
+
+
 }
 
-
+/*
 void Interface::extratoliga()
 {
   string numero;
