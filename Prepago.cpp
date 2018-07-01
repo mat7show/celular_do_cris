@@ -51,7 +51,7 @@ void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 {
 	if (duracao*custo_p_min > get_creditos())
 	{
-		//lanca excessao credito insuficient
+		throw ExceptCreditoIns("Creditos insuficientes para a chamada");
 	}
 	Ligacao L(dataLig, duracao, horalig);
 	listaChamadas_.push_back(L);

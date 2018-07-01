@@ -25,7 +25,7 @@ void Operadora::inserirCliente(const Cliente &C)
 {
 	if (clientes_.max_size() <= clientes_.size())
 	{
-		//joga excess�o de clientes_cheio aqui
+		throw ExceptVetorCheio("Vetor de clientes cheio!");
 	}
 	else clientes_.push_back(C);
 }
@@ -62,7 +62,7 @@ void Operadora::excluirCliente(std::string cpf_cnpj)
 
 
 	}
-	//if (!flag) // joga excessao de cliente inexistente
+	if (!flag)  throw ExceptContaInex("Cliente inexistente");
 }
 
 void Operadora::excluirCelular(string numero)
@@ -78,7 +78,7 @@ void Operadora::excluirCelular(string numero)
 		  break;
 		}
 	}
-	//if(!flag) //throw excessao de conta nao existente
+	if(!flag)  throw ExceptContaInex("Numero inexistente");
 }
 
 void Operadora::creditar(string numero, double valor)
@@ -106,7 +106,8 @@ double Operadora::valorconta(string numero)
       return celulares_[i].get_fatura();
     }
   }
-  //joga excessao
+  //se chega aqui eh pq nao tem a conta
+  throw ExceptContaInex("Numero inexistente");
 }
 
 vector<Ligacao> Operadora::obterExtrato(string numConta)const
@@ -123,8 +124,7 @@ vector<Ligacao> Operadora::obterExtrato(string numConta)const
 			break;
 		}
 	}
-	//if (!flag) //throw excessao de conta inexistente
-
+	if (!flag)  throw ExceptContaInex("Numero inexistente");
 
 	return chamadas_user;
 }
@@ -144,7 +144,7 @@ vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial)const
 			break;
 		}
 	}
-	//if (!flag) //throw excessao de conta inexistente
+	if (!flag)  throw ExceptContaInex("Numero inexistente");
 
 
 	for (size_t i = 0; i < chamadas_user.size(); i++)
@@ -173,7 +173,7 @@ std::vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial, 
 			break;
 		}
 	}
-	//if (!flag) //throw excessao de conta inexistente
+	if (!flag) throw ExceptContaInex("Numero inexistente");//throw excessao de conta inexistente
 
 
 		for (size_t i = 0; i < chamadas_user.size(); i++)
@@ -211,7 +211,7 @@ void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora 
 			C.realizar_chamada(dataLig, duracao, horalig);
 		}
 	}
-	//if (!flag) excessao de nao tem esse numero
+	if (!flag) throw ExceptContaInex("Numero inexistente");  //excessao de nao tem esse numero
 }
 
 

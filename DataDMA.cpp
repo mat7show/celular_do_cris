@@ -19,6 +19,7 @@ DataDMA::DataDMA() //data do momento de chamada
 	long dias_ate_1970 = epoch.n_dias_em_data();
 
 	*this = data_de_n_dias(dias_desde_1970 + dias_ate_1970);
+
 }
 
 DataDMA::DataDMA(int dia, int mes, int ano)
@@ -26,6 +27,7 @@ DataDMA::DataDMA(int dia, int mes, int ano)
   dia_ = dia;
   mes_ = mes;
   ano_ = ano;
+  if (!this->valida()) throw  ExceptData("Data Invalida");
 }
 
 DataDMA::DataDMA(DataDMA const &d)
