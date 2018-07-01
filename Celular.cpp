@@ -37,8 +37,6 @@ list<Chamada> Celular::getlistaChamadas ()const
 return listaChamadas_;
 }
 
-bool get_plano();
-
 void Celular::setNumero(string numero)
 {
 this->numero_=numero;
