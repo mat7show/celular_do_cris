@@ -7,11 +7,12 @@
 using namespace std;
 using namespace operadora;
 
-Prepago::Prepago (string numero,const Cliente &dono, list<Chamada> listaChamadas,double creditos,DataDMA validade ) : Celular(numero, dono, listaChamadas)
+Prepago::Prepago (string numero,const Cliente &dono, list<Chamada> listaChamadas,double creditos,const DataDMA &validade ) : Celular(numero, dono, listaChamadas)
 {
-	creditos_ = creditos;
-	validade_=validade;
-	plano = 0;
+
+creditos_ = creditos;
+validade_=validade;
+
 }
 
 double Prepago::get_creditos ()const
@@ -20,8 +21,11 @@ double Prepago::get_creditos ()const
 }
 DataDMA Prepago::get_validade ()const
 {
-	return validade_;
+
+return validade_;
 }
+
+
 
 
 void Prepago::set_creditos(double creditos)
@@ -29,7 +33,7 @@ void Prepago::set_creditos(double creditos)
 	this->creditos_ = creditos;
 }
 
-void Prepago::set_creditos(DataDMA validade)
+void Prepago::set_validade(const DataDMA &validade)
 {
 	this->validade_ = validade;
 }
