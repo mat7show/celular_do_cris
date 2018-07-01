@@ -35,3 +35,4 @@ int Ligacao::get_duracao()const
 {
   return duracao_;
 }
+

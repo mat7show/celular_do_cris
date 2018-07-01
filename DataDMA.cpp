@@ -99,6 +99,9 @@ int DataDMA::get_ano() const
 	return ano_;
 }
 
+
+
+
 DataDMA DataDMA::operator+(DataDMA d)
 {
 	long dias1 = d.n_dias_em_data();
@@ -167,3 +170,4 @@ bool DataDMA::operator>=(DataDMA d)
 	if ((this->n_dias_em_data()) >= d.n_dias_em_data()) return true;
 	else return false;
 }
+

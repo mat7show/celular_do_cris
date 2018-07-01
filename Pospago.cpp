@@ -7,7 +7,7 @@
 using namespace std;
 using namespace operadora;
 
-Pospago::Pospago (string numero,const Cliente &dono, list<Chamada> listaChamadas,const DataDMA &vencimento):Celular(numero, dono, listaChamadas)
+Pospago::Pospago (string numero,const Cliente &dono, vector<Ligacao> listaChamadas,const DataDMA &vencimento):Celular(numero, dono, listaChamadas)
 {
 
 vencimento_ = vencimento;
@@ -26,4 +26,10 @@ DataDMA Pospago::get_vencimento ()const
 void Pospago::set_vencimento(const DataDMA &vencimento)
 {
 	this->vencimento_ = vencimento;
+}
+
+
+string Celular::get_plano()
+{
+	return "Pos-pago";
 }

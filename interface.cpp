@@ -9,7 +9,7 @@ using namespace operadora;
 Interface::Interface(){
 }
 
-Interface::Interface(string nome,vector<Cliente> clientes,list<Celular> contas):Banco(nome,clientes,contas){
+Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular> contas):Banco(nome,clientes,contas){
 
 }
 
@@ -300,7 +300,7 @@ cout<<extrato<<endl;
 }
 
 void Interface::listaclientes()const{
-std::list<Cliente> temp;
+std::vector<Cliente> temp;
 Cliente clientetemp;
 temp = this->obterListaClientes();
 
@@ -312,7 +312,7 @@ this->printacliente(clientetemp);
 }
 
 void Interface::listaplanos()const{
-std::list<Celular> temp;
+std::vector<Celular> temp;
 Celular celulartemp;
 temp = this->obterListaPlanos();
 
@@ -323,7 +323,7 @@ this->printaplano(celulartemp);
 }
 }
 void Interface::listacelulares()const{
-std::list<Celular> temp;
+std::vector<Celular> temp;
 Celular celulartemp;
 temp = this->obterListaCelulares();
 
@@ -335,7 +335,7 @@ this->printacelular(celulartemp);
 }
 
 void Interface::listavencimentos()const{
-std::list<Celular> temp;
+std::vector<Celular> temp;
 Celular celulartemp;
 temp = this->obterListaPlanos();
 

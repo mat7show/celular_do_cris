@@ -53,6 +53,7 @@ namespace operadora {
 		int get_dia() const;
 		int get_mes() const;
 		int get_ano() const;
+		std::string get_data_formatada() const;
 		bool valida();
 
 		DataDMA operator+(DataDMA d);
@@ -106,23 +107,23 @@ namespace operadora {
 	private:
 		std::string numero_;
 		Cliente dono_;
-		std::list<Chamada> listaChamadas_;
+		std::vector<Ligacao> listaChamadas_;
 
 
 
 	public:
-		Celular(std::string numero, const Cliente &dono, std::list<Chamada> listaChamadas);
+		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
 
 		std::string getNumero ()const;
 		Cliente getDono ()const;
-		std::list<Chamada> getlistaChamadas ()const;
+		std::vector<Ligacao> getlistaChamadas ()const;
 
 		void setNumero(std::string numero);
 		void setDono(const Cliente &dono);
-		void setlistaChamadas(std::list<Chamada> listaChamadas);
+		void setlistaChamadas(std::vector<Ligacao> listaChamadas);
 
-		//virtual bool get_plano();
+		virtual std::string get_plano();
 
 	};
 
@@ -133,7 +134,7 @@ namespace operadora {
 		double creditos_;
 		DataDMA validade_;
 	public:
-		Prepago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, double creditos,const DataDMA &validade );
+		Prepago (std::string numero,const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos,const DataDMA &validade );
 		double get_creditos ()const;
 		DataDMA get_validade ()const;
 		void set_creditos(double creditos);
@@ -150,7 +151,7 @@ namespace operadora {
 		DataDMA vencimento_;
 
 	public:
-		Pospago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, const DataDMA &vencimento);
+		Pospago (std::string numero,const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
 		DataDMA get_vencimento ()const;
 		void set_vencimento(const DataDMA &vencimento);
 
@@ -162,28 +163,29 @@ namespace operadora {
 	class Operadora
 	{
 	private:
-		std::list<Cliente> clientes_;
-		std::list<Celular> celulares_;
+		std::vector<Cliente> clientes_;
+		std::vector<Celular> celulares_;
 		std::string nomeOperadora_;
 
 	public:
 		Operadora();
-		Operadora(std::string nome, std::list<Cliente> clientes, std::list<Celular> contas);
+		Operadora(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> contas);
 
 		void inserirCliente(const Cliente &C);
 		void criarCelular(const Cliente &C);
 		void excluirCliente(std::string cpf_cnpj);
-		void excluirConta(int numConta);
-		std::string obterExtrato(int numConta)const;
-		std::string obterExtrato(int numConta, DataDMA dInicial)const;
-		std::string obterExtrato(int numConta, DataDMA dInicial, DataDMA dFinal)const;
-		std::list<Cliente> obterListaClientes()const;
-		std::list<Celular> obterListaCelulares()const;
+		void excluirConta(std::string numConta);
+		std::vector<Ligacao> obterExtrato(std::string numConta)const;
+		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial)const;
+		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial, DataDMA dFinal)const;
+		std::vector<Cliente> obterListaClientes()const;
+		std::vector<Celular> obterListaCelulares()const;
 
 	};
 
 	class Interface : public Operadora{
 	private:
+		
 
 	public:
 
@@ -213,6 +215,7 @@ namespace operadora {
 		DataDMA get_data_ligacao()const;
 		Hora get_hora_ligacao()const;
 		int get_duracao()const;
+		std::string get_info_ligacao()const;
 	};
 
 
