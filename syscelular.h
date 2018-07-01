@@ -11,6 +11,36 @@
 namespace tp2 {
 
 
+	class ExceptContaInex{
+public:
+	ExceptContaInex(std::string e);
+	std::string what();
+
+};
+
+class ExceptData
+{
+private:
+	std::string erro_;
+
+public:
+	ExceptData(std::string e);
+	std::string what();
+
+};
+
+
+class ExceptOutras : public std::runtime_error //ja vem com funcao what();
+{
+private:
+	std::string erro_;
+public:
+	ExceptOutras(std::string what);
+
+};
+
+
+
 
 	class Hora
 	{
@@ -69,23 +99,23 @@ namespace tp2 {
 	};
 
 
-		class Ligacao
-		{
-		private:
-			DataDMA data_ligacao_;
-			Hora hora_ligacao_;
-			int duracao_;
+	class Ligacao
+	{
+	private:
+		DataDMA data_ligacao_;
+		Hora hora_ligacao_;
+		int duracao_;
 
-		public:
-			Ligacao(DataDMA dataLig, int duracao, Hora horalig);
-			Ligacao(const Ligacao &M);
+	public:
+		Ligacao(DataDMA dataLig, int duracao, Hora horalig);
+		Ligacao(const Ligacao &M);
 
 
-			DataDMA get_data_ligacao()const;
-			Hora get_hora_ligacao()const;
-			int get_duracao()const;
-			std::string get_info_ligacao()const;
-		};
+		DataDMA get_data_ligacao()const;
+		Hora get_hora_ligacao()const;
+		int get_duracao()const;
+		std::string get_info_ligacao()const;
+	};
 
 
 
@@ -138,9 +168,9 @@ namespace tp2 {
 		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
 
-		std::string getNumero ()const;
-		Cliente getDono ()const;
-		std::vector<Ligacao> getlistaChamadas ()const;
+		std::string getNumero()const;
+		Cliente getDono()const;
+		std::vector<Ligacao> getlistaChamadas()const;
 
 		void setNumero(std::string numero);
 		void setDono(const Cliente &dono);
@@ -148,11 +178,11 @@ namespace tp2 {
 
 
 		virtual std::string get_plano();
-		virtual	double get_creditos ()const;
+		virtual	double get_creditos()const;
 		virtual	void set_creditos(double creditos);
-		virtual	DataDMA get_vencimento ()const;
+		virtual	DataDMA get_vencimento()const;
 		virtual	void set_vencimento(const DataDMA &vencimento);
-		virtual double get_fatura ()const;
+		virtual double get_fatura()const;
 		virtual	void set_fatura(double fatura);
 
 		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
@@ -166,9 +196,9 @@ namespace tp2 {
 		double creditos_;
 		DataDMA validade_;
 	public:
-		Prepago (std::string numero,const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos,const DataDMA &validade );
-		double get_creditos ()const;
-		DataDMA get_validade ()const;
+		Prepago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos, const DataDMA &validade);
+		double get_creditos()const;
+		DataDMA get_validade()const;
 		void set_creditos(double creditos);
 		void set_validade(const DataDMA &validade);
 		static int get_custo(int duracao);
@@ -184,10 +214,10 @@ namespace tp2 {
 		double fatura_;
 
 	public:
-		Pospago (std::string numero,const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
-		DataDMA get_vencimento ()const;
+		Pospago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
+		DataDMA get_vencimento()const;
 		void set_vencimento(const DataDMA &vencimento);
-		double get_fatura ()const;
+		double get_fatura()const;
 		void set_fatura(double fatura);
 
 
@@ -226,27 +256,27 @@ namespace tp2 {
 
 	};
 
-	class Interface : public Operadora{
+	class Interface : public Operadora {
 	public:
-	Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
-	int menu();
-	void novocliente();
-	//void novoplano();
-	void excluirc();
-	void addcreditos();
-	void regliga();
-	void verconta();
-	void listacredval();
-	void extratoliga();
-  void printacliente(const Cliente &clientet)const;
-	void listaclientes()const;
+		Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
+		int menu();
+		void novocliente();
+		//void novoplano();
+		void excluirc();
+		void addcreditos();
+		void regliga();
+		void verconta();
+		void listacredval();
+		void extratoliga();
+		void printacliente(const Cliente &clientet)const;
+		void listaclientes()const;
 
 
 
 
 
-};
-
+	};
+}
 
 
 
