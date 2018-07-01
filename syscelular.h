@@ -11,6 +11,18 @@
 namespace operadora {
 
 
+
+	class Hora
+	{
+	private:
+		std::string timestamp_;	
+
+	public:
+		Hora();
+		std::string get_timestamp();
+
+	};
+
 	class ExcData
 	{
 	private:
@@ -28,13 +40,13 @@ namespace operadora {
 		int mes_;
 		int ano_;
 
-		int n_dias_em_data() const;
+		long n_dias_em_data();
 		static DataDMA data_de_n_dias(int dias);
 
 	public:
 		DataDMA();
 		DataDMA(int dia, int mes, int ano);
-		DataDMA(int dias_passados_desde_1970);
+		DataDMA(long dias_passados_desde_1970);
 		DataDMA(DataDMA const &d);
 
 
@@ -44,7 +56,7 @@ namespace operadora {
 		bool valida();
 
 		DataDMA operator+(DataDMA d);
-		DataDMA operator+(int d);
+		DataDMA operator+(long d);
 		DataDMA operator-(DataDMA d);
 		DataDMA operator=(DataDMA d);
 		bool operator==(DataDMA d);
@@ -110,7 +122,7 @@ namespace operadora {
 		void setDono(const Cliente &dono);
 		void setlistaChamadas(std::list<Chamada> listaChamadas);
 
-		virtual bool get_plano();
+		//virtual bool get_plano();
 
 	};
 
@@ -125,7 +137,9 @@ namespace operadora {
 		double get_creditos ()const;
 		DataDMA get_validade ()const;
 		void set_creditos(double creditos);
+
 		void set_validade(const DataDMA &validade);
+
 
 
 	};
