@@ -8,69 +8,7 @@
 //using namespace std;
 
 
-
-namespace tp2 
-{
-
-
-
-	class ExceptCreditoIns
-	{
-	private:
-		std::string erro_;
-
-	public:
-		ExceptCreditoIns(std::string e);
-		std::string what();
-	};
-
-	class ExceptVetorCheio
-	{
-	private:
-		std::string erro_;
-	public:
-		ExceptVetorCheio(std::string e);
-		std::string what();
-
-	};
-
-	class ExceptContaInex
-	{
-	private:
-		std::string erro_;
-
-	public:
-		ExceptContaInex(std::string e);
-		std::string what();
-
-	};
-
-	class ExceptData
-	{
-	private:
-		std::string erro_;
-
-	public:
-		ExceptData(std::string e);
-		std::string what();
-
-	};
-
-
-	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
-	{
-	private:
-		std::string erro_;
-	public:
-		ExceptOutras(std::string what);
-
-	};
-
-
-
-
-
-
+namespace tp2 {
 
 
 
@@ -85,7 +23,13 @@ namespace tp2
 
 	};
 
-	
+	class ExcData
+	{
+	private:
+
+	public:
+
+	};
 
 
 
@@ -109,6 +53,7 @@ namespace tp2
 		int get_dia() const;
 		int get_mes() const;
 		int get_ano() const;
+		std::string get_data_formatada() const;
 		bool valida();
 
 		DataDMA operator+(DataDMA d);
@@ -124,23 +69,23 @@ namespace tp2
 	};
 
 
-	class Ligacao
-	{
-	private:
-		DataDMA data_ligacao_;
-		Hora hora_ligacao_;
-		int duracao_;
+		class Ligacao
+		{
+		private:
+			DataDMA data_ligacao_;
+			Hora hora_ligacao_;
+			int duracao_;
 
-	public:
-		Ligacao(DataDMA dataLig, int duracao, Hora horalig);
-		Ligacao(const Ligacao &M);
+		public:
+			Ligacao(DataDMA dataLig, int duracao, Hora horalig);
+			Ligacao(const Ligacao &M);
 
 
-		DataDMA get_data_ligacao()const;
-		Hora get_hora_ligacao()const;
-		int get_duracao()const;
-		std::string get_info_ligacao()const;
-	};
+			DataDMA get_data_ligacao()const;
+			Hora get_hora_ligacao()const;
+			int get_duracao()const;
+			std::string get_info_ligacao()const;
+		};
 
 
 
@@ -191,9 +136,9 @@ namespace tp2
 		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
 
-		std::string getNumero()const;
-		Cliente getDono()const;
-		std::vector<Ligacao> getlistaChamadas()const;
+		std::string getNumero ()const;
+		Cliente getDono ()const;
+		std::vector<Ligacao> getlistaChamadas ()const;
 
 		void setNumero(std::string numero);
 		void setDono(const Cliente &dono);
@@ -201,11 +146,11 @@ namespace tp2
 
 
 		virtual std::string get_plano();
-		virtual	double get_creditos()const;
+		virtual	double get_creditos ()const;
 		virtual	void set_creditos(double creditos);
-		virtual	DataDMA get_vencimento()const;
+		virtual	DataDMA get_vencimento ()const;
 		virtual	void set_vencimento(const DataDMA &vencimento);
-		virtual double get_fatura()const;
+		virtual double get_fatura ()const;
 		virtual	void set_fatura(double fatura);
 
 		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
@@ -218,9 +163,9 @@ namespace tp2
 		double creditos_;
 		DataDMA validade_;
 	public:
-		Prepago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos, const DataDMA &validade);
-		double get_creditos()const;
-		DataDMA get_validade()const;
+		Prepago (std::string numero,const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos,const DataDMA &validade );
+		double get_creditos ()const;
+		DataDMA get_validade ()const;
 		void set_creditos(double creditos);
 		void set_validade(const DataDMA &validade);
 		static int get_custo(int duracao);
@@ -236,10 +181,10 @@ namespace tp2
 		double fatura_;
 
 	public:
-		Pospago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
-		DataDMA get_vencimento()const;
+		Pospago (std::string numero,const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
+		DataDMA get_vencimento ()const;
 		void set_vencimento(const DataDMA &vencimento);
-		double get_fatura()const;
+		double get_fatura ()const;
 		void set_fatura(double fatura);
 
 
@@ -270,7 +215,7 @@ namespace tp2
 		std::vector<Cliente> obterListaClientes()const;
 		std::vector<Celular> obterListaCelulares()const;
 
-		void registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig);
+		void registrar_ligacao(const Celular &C, const DataDMA &dataLig, int duracao, Hora horalig);
 		std::vector<Celular> listar_vencidos();
 
 
@@ -278,7 +223,7 @@ namespace tp2
 
 	};
 
-	class Interface : public Operadora {
+	class Interface : public Operadora{
 	public:
 	Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
 	int menu();
@@ -290,16 +235,14 @@ namespace tp2
 	void verconta();
 	void listacredval();
 	void extratoliga();
-		Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
-		int menu();
-		void novocliente();
-		void novoplano();
-		void excluirc();
-		void addcreditos();
-		void regliga();
-		void verconta();
-		void listacredval();
-		void extratoliga();
+  void printacliente(const Cliente &clientet)const;
+	void listaclientes()const;
+
+
+
+
+
+};
 
 
 
@@ -307,15 +250,7 @@ namespace tp2
 
 
 
-	};
 
-
-
-
-
-
-
-}
 
 
 

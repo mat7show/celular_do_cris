@@ -17,9 +17,9 @@ int Interface::menu()
   int menu;
 
 	cout << endl << endl
-		 << "      {{{{{{{{{{}}}}}}}}}" << endl
-		 << "   {{{{{{{{   MENU   }}}}}}}" << endl
-		 << "      {{{{{{{{{{}}}}}}}}}" << endl;
+		 << "      {{{{{{{{{{}}}}}}}}}}" << endl
+		 << "   {{{{{{{{   MENU   }}}}}}}}" << endl
+		 << "      {{{{{{{{{{}}}}}}}}}}" << endl;
 
 
 		cout <<"1.)Cadastrar cliente " << endl
@@ -305,7 +305,7 @@ temp = this->obterExtrato(numero,dini,dfim);
 }
 
 
-/*void Interface::listaclientes()const{
+void Interface::listaclientes()const{
 std::vector<Cliente> temp;
 Cliente clientetemp;
 temp = this->obterListaClientes();
@@ -316,7 +316,7 @@ clientetemp =*i;
 this->printacliente(clientetemp);
 }
 }
-
+/*
 void Interface::listaplanos()const{
 std::vector<Celular> temp;
 Celular celulartemp;
@@ -328,6 +328,7 @@ celulartemp =*i;
 this->printaplano(celulartemp);
 }
 }
+
 void Interface::listacelulares()const{
 std::vector<Celular> temp;
 Celular celulartemp;
@@ -351,17 +352,18 @@ celulartemp =*i;
 this->printaplano(celulartemp);
 }
 }
+*/
 
 
-
-void Interface::printacliente(const Cliente &clientet)const{
+void Interface::printacliente(const Cliente &clientet)const
+{
   cout<<endl<<endl<<"Nome: "<< clientet.getnomeCliente() <<endl;
   cout<<"CPF/CNPJ: "<< clientet.getcpf_cnpj() <<endl;
   cout<<"Endereço: "<< clientet.getendereco() <<endl;
-  cout<<"Telefone: "<< clientet.getfone() <<endl;
 }
-
+/*
 void Interface::printaconta(const Conta &contat)const{
   cout<<endl<<endl<<"Numero da conta: "<< contat.get_num_conta();
 }
 */
+}
