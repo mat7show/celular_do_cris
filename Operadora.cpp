@@ -44,12 +44,12 @@ void Operadora::excluirCliente(std::string cpf_cnpj)
 	bool flag = false;
 	for(size_t i=0; i<clientes_.size(); i++)
 	{
-		if (clientes_[i].getcpf_cnpj == cpf_cnpj)
+		if (clientes_[i].getcpf_cnpj() == cpf_cnpj)
 		{
 			flag = true;
 			for (size_t j =0; j<celulares_.size();j++)
 			{
-				if (celulares_[j].getDono().getcpf_cnpj == cpf_cnpj)
+				if (celulares_[j].getDono().getcpf_cnpj() == cpf_cnpj)
 				{
 					//joga excess�o do cliente ter celular
 				}
@@ -148,7 +148,7 @@ vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial)const
 
 	for (size_t i = 0; i < chamadas_user.size(); i++)
 	{
-		if (chamadas_user[i].get_data_ligacao > dInicial)
+		if (chamadas_user[i].get_data_ligacao() > dInicial)
 		{
 			chamadas_ret.push_back(chamadas_user[i]);
 		}
@@ -177,7 +177,7 @@ std::vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial, 
 
 		for (size_t i = 0; i < chamadas_user.size(); i++)
 		{
-			if (chamadas_user[i].get_data_ligacao > dInicial && chamadas_user[i].get_data_ligacao() < dFinal)
+			if (chamadas_user[i].get_data_ligacao() > dInicial && chamadas_user[i].get_data_ligacao() < dFinal)
 			{
 				chamadas_ret.push_back(chamadas_user[i]);
 			}
