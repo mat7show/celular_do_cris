@@ -33,3 +33,12 @@ string Celular::get_plano()
 {
 	return "Pos-pago";
 }
+
+double Pospago::get_fatura ()const
+{
+	return fatura_;
+}
+void Pospago::set_fatura(double fatura)
+{
+	this->fatura_= fatura;
+}

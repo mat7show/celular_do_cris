@@ -152,6 +152,8 @@ namespace operadora {
 		virtual	void set_validade(const DataDMA &validade);
 		virtual	DataDMA get_vencimento ()const;
 		virtual	void set_vencimento(const DataDMA &vencimento);
+		virtual double get_fatura ()const;
+		virtual	void set_fatura(double fatura);
 	};
 
 
@@ -175,11 +177,14 @@ namespace operadora {
 	{
 	private:
 		DataDMA vencimento_;
+		double fatura_;
 
 	public:
 		Pospago (std::string numero,const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
 		DataDMA get_vencimento ()const;
 		void set_vencimento(const DataDMA &vencimento);
+		double get_fatura ()const;
+		void set_fatura(double fatura);
 
 
 	};
