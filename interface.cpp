@@ -255,7 +255,7 @@ void Interface::verconta(){
   cout <<endl<< "Insira o numero do celular"<<endl;
   getline(cin,numero);
   getline(cin,numero);
-  this->vericonta(numero)
+  this->valorconta(numero)
 
 }
 void Interface::listacredval(){

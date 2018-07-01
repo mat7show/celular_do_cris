@@ -207,6 +207,7 @@ namespace operadora {
 		void excluirCliente(std::string cpf_cnpj);
 		void excluirCelular(std::string numConta);
 		void creditar(std::string numero, double valor);
+		double valorconta(std::string numero);
 		std::vector<Ligacao> obterExtrato(std::string numConta)const;
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial)const;
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial, DataDMA dFinal)const;
