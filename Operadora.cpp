@@ -38,7 +38,7 @@ void Operadora::criarCelular( const Cliente &C)
 
 //eu ia usar os iteradores elegantes das listas, mas dado nosso
 // tempo (in)disponivel achei melhor usar vetor msm
-/*
+
 void Operadora::excluirCliente(std::string cpf_cnpj)
 {
 	bool flag = false;
@@ -80,7 +80,7 @@ void Operadora::excluirCelular(string numero)
 	}
 	//if(!flag) //throw excessao de conta nao existente
 }
-*/
+
 void Operadora::creditar(string numero, double valor)
 {
   //excessão caso o plano não for prepago
@@ -107,7 +107,7 @@ double Operadora::valorconta(string numero)
     }
   }
 }
-/*
+
 vector<Ligacao> Operadora::obterExtrato(string numConta)const
 {
 	vector<Ligacao> chamadas_user;
@@ -186,7 +186,7 @@ std::vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial, 
 	return chamadas_ret;
 
 }
-*/
+
 vector<Cliente> Operadora::obterListaClientes()const
 {
   return clientes_;

@@ -218,7 +218,7 @@ namespace operadora {
 
 	};
 
-	class Interface : public Operadora{
+	class Interface : public operadora::Operadora{
 	private:
 
 
