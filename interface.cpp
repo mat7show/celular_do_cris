@@ -6,13 +6,14 @@
 using namespace std;
 using namespace tp2;
 
-Interface::Interface(){
-}
 
 Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular> celulares):Operadora(nome,clientes,celulares)
-{}
+{
 
-int Interface::menu(){
+}
+
+int Interface::menu()
+{
   int menu;
 
 	cout << endl << endl
@@ -42,12 +43,12 @@ cout<<endl<<"{{{{Cadastrar cliente}}}}"<<endl;
 this->novocliente();
 break;
 
-
+/*
 case(2):
 cout<<endl<<"{{{{Cadastrar celular e plano}}}}"<<endl;
 this->novoplano();
 break;
-
+*/
 case(3):
 cout<<endl<<"{{{{Excluir celular}}}}"<<endl;
 this->excluirc();
@@ -107,7 +108,8 @@ cout<<"Comando invalido"<<endl;
 return menu;
 }
 
-void Interface::novocliente(){
+void Interface::novocliente()
+{
 
   string cpf_cnpj;
   string nome;
@@ -131,7 +133,7 @@ void Interface::novocliente(){
   cout<<"Cliente inserido"<<endl;
   }
 
-
+/*
 void Interface::novoplano(){
   string numero;
   int opt, dia, mes, ano;
@@ -194,8 +196,9 @@ for (size_t i = 0; i<temp.size(); i++)
 
 }
 
-
-void Interface::excluirc(){
+*/
+void Interface::excluirc()
+{
   string numero;
   vector<Celular> temp;
   temp = this->obterListaCelulares();
@@ -203,18 +206,11 @@ void Interface::excluirc(){
 cout <<endl<< "Insira o numero do celular"<<endl;
 getline(cin,numero);
 getline(cin,numero);
-for (size_t i = 0; i<temp.size(); i++)
-{
-  if (temp[i].getNumero() == numero)
-  {
-    existe = true;
-    this->excluirCelular(temp[i]);
-    i=temp.size();
-  }
-}
+this->excluirCelular(numero);
 }
 
-void Interface::addcreditos(){
+void Interface::addcreditos()
+{
   string numero;
   double credito;
 
@@ -229,8 +225,10 @@ this->creditar(numero,credito);
 void Interface::regliga()
 {
   int dia, mes, ano,duracao;
+  string numero;
   vector<Celular> temp;
   temp = this->obterListaCelulares();
+
   cout <<endl<< "Insira o numero do celular"<<endl;
   getline(cin,numero);
   getline(cin,numero);
@@ -241,65 +239,70 @@ void Interface::regliga()
   cout << "Insira o ano da ligacao"<<endl;
   cin>>ano;
   DataDMA datalig(dia,mes,ano);
-
   cout <<endl<< "Insira a duracao em minutos da ligacao"<<endl;
   cin>>duracao;
-
-  Hora hora();
-
-
-
+  Hora horal;
 
   for (size_t i = 0; i<temp.size(); i++)
   {
     if (temp[i].getNumero() == numero)
     {
-      this->registrar_ligacao(temp[i],datalig,duracao,hora);
+      this->registrar_ligacao(temp[i], datalig, duracao, horal);
       i=temp.size();
     }
   }
 
 }
 
-void Interface::verconta(){
+void Interface::verconta()
+{
+  string numero;
   cout <<endl<< "Insira o numero do celular"<<endl;
   getline(cin,numero);
   getline(cin,numero);
-  this->valorconta(numero)
+  this->valorconta(numero);
 
 }
+
+/*
 void Interface::listacredval(){
+  string numero;
   cout <<endl<< "Insira o numero do celular"<<endl;
   getline(cin,numero);
   getline(cin,numero);
   this->vercredval(numero)
-
 }
+*/
 
-void Interface::extratoliga(){
-  int numero;
-  string extrato;
+void Interface::extratoliga()
+{
+  string numero;
   int dinicial,minicial,ainicial,dfinal,mfinal,afinal;
+  vector<Ligacao> temp;
 
-cout <<endl<< "Insira o numero da conta a se avaliar extrato"<<endl;
-cin>>numConta;
+cout <<endl<< "Insira o numero do celular a se avaliar o extrato"<<endl;
+getline(cin,numero);
+getline(cin,numero);
+
 cout << "Insira o dia inicial da consulta"<<endl;
 cin>>dinicial;
 cout << "Insira o mes inicial da consulta"<<endl;
 cin>>minicial;
 cout << "Insira o ano inicial da consulta"<<endl;
 cin>>ainicial;
-Data dini(dinicial,minicial,ainicial);
+DataDMA dini(dinicial,minicial,ainicial);
+
 cout <<endl<< "Insira o dia final da consulta"<<endl;
 cin>>dfinal;
 cout << "Insira o mes final da consulta"<<endl;
 cin>>mfinal;
 cout << "Insira o ano final da consulta"<<endl;
 cin>>afinal;
-Data dfim(dfinal,mfinal,afinal);
 
-extrato = this->obterExtrato(numero,dini,dfim);
-cout<<extrato<<endl;
+DataDMA dfim(dfinal,mfinal,afinal);
+
+temp = this->obterExtrato(numero,dini,dfim);
+}
 }
 
 /*void Interface::listaclientes()const{

@@ -199,7 +199,7 @@ vector<Celular> Operadora::obterListaCelulares()const
 }
 
 
-void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig)
+void Operadora::registrar_ligacao(const Celular &C, const DataDMA &dataLig, int duracao, Hora horalig)
 {
 	bool flag = false;
 	Ligacao L(dataLig, duracao, horalig);
