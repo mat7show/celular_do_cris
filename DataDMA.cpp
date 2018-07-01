@@ -6,7 +6,7 @@
 
 #include "syscelular.h"
 
-using namespace operadora;
+using namespace tp2;
 
 
 DataDMA::DataDMA() //data do momento de chamada
@@ -37,7 +37,7 @@ DataDMA::DataDMA(DataDMA const &d)
 
 DataDMA::DataDMA( long dias)
 {
-	*this = data_de_n_dias(dias);	
+	*this = data_de_n_dias(dias);
 }
 
 
@@ -74,7 +74,7 @@ long DataDMA::n_dias_em_data()
 
 }
 
-bool DataDMA::valida() 
+bool DataDMA::valida()
 {
 	long dias = this->n_dias_em_data();
 	if ((*this) == data_de_n_dias(dias))
@@ -170,4 +170,3 @@ bool DataDMA::operator>=(DataDMA d)
 	if ((this->n_dias_em_data()) >= d.n_dias_em_data()) return true;
 	else return false;
 }
-

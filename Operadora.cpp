@@ -6,7 +6,7 @@
 #include <cstdio>
 #include "syscelular.h"
 using namespace std;
-using namespace operadora;
+using namespace tp2;
 
 
 Operadora::Operadora()
@@ -222,7 +222,7 @@ vector<Celular> Operadora::listar_vencidos()
 
 	for (size_t i = 0; i < celulares_.size(); i++)
 	{
-		
+
 		if (celulares_[i].get_vencimento() <= Hoje)
 		{
 			ret.push_back(celulares_[i]);

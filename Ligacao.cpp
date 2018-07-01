@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "syscelular.h"
-using namespace operadora;
+using namespace tp2;
 
 Ligacao::Ligacao(DataDMA dataLig, int duracao, Hora horalig)
 {
@@ -35,4 +35,3 @@ int Ligacao::get_duracao()const
 {
   return duracao_;
 }
-

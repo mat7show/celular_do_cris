@@ -53,6 +53,7 @@ public:
 
 
 namespace operadora {
+namespace tp2 {
 
 
 
@@ -195,7 +196,7 @@ namespace operadora {
 		virtual	void set_vencimento(const DataDMA &vencimento);
 		virtual double get_fatura ()const;
 		virtual	void set_fatura(double fatura);
-		
+
 		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
 	};
 
@@ -260,27 +261,32 @@ namespace operadora {
 
 		void registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig);
 		std::vector<Celular> listar_vencidos();
-		
+
 
 
 
 	};
 
-	class Interface : public operadora::Operadora{
-	private:
-
-
+	class Interface : public Operadora{
 	public:
+	Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
+	int menu();
+	void novocliente();
+	void novoplano();
+	void excluirc();
+	void addcreditos();
+	void regliga();
+	void verconta();
+	void listacredval();
+	void extratoliga();
 
-	};
 
 
 
 
 
 
-
-}
+};
 
 
 

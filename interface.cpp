@@ -4,14 +4,13 @@
 #include <vector>
 #include "syscelular.h"
 using namespace std;
-using namespace operadora;
+using namespace tp2;
 
 Interface::Interface(){
 }
 
-Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular> contas):Banco(nome,clientes,contas){
-
-}
+Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular> celulares):Operadora(nome,clientes,celulares)
+{}
 
 int Interface::menu(){
   int menu;
@@ -23,18 +22,17 @@ int Interface::menu(){
 
 
 		cout <<"1.)Cadastrar cliente " << endl
-       << " 2.)Cadastrar plano"<<endl
-       << " 3.)Habilitar celular " << endl
-       << " 4.)Excluir celular " << endl
-       << " 5.)Adicionar creditos (Pre pago) " << endl
-       << " 6.)Registrar ligacao " << endl
-       << " 7.)Ver valor da conta (Pos pago) " << endl
-       << " 8.)Listar Creditos e validade (Pre pago) " << endl
-       << "9.)Ver extrato de ligacoes " << endl
-       << "10.)Listar os clientes " << endl
-       << "11.)Listar os planos " << endl
-      << "12.)Listar os celulares " << endl
-      << "13.)Listar os vencimentos " << endl
+       << " 2.)Cadastrar celular e plano " << endl
+       << " 3.)Excluir celular " << endl
+       << " 4.)Adicionar creditos (Pre pago) " << endl
+       << " 5.)Registrar ligacao " << endl
+       << " 6.)Ver valor da conta (Pos pago) " << endl
+       << " 7.)Listar Creditos e validade (Pre pago) " << endl
+       << " 8.)Ver extrato de ligacoes " << endl
+       << "9.)Listar os clientes " << endl
+       << "10.)Listar os planos " << endl
+      << "11.)Listar os celulares " << endl
+      << "12.)Listar os vencimentos " << endl
        << "0.)Sair " << endl;
 			cin >> menu;
 switch (menu)
@@ -46,65 +44,60 @@ break;
 
 
 case(2):
-cout<<endl<<"{{{{Cadastrar plano}}}}"<<endl;
+cout<<endl<<"{{{{Cadastrar celular e plano}}}}"<<endl;
 this->novoplano();
 break;
 
 case(3):
-cout<<endl<<"{{{{Habilitar celular}}}}"<<endl;
-this->habcelular();
+cout<<endl<<"{{{{Excluir celular}}}}"<<endl;
+this->excluirc();
 break;
 
 case(4):
-cout<<endl<<"{{{{Excluir celular}}}}"<<endl;
-this->excluircelular();
-break;
-
-case(5):
 cout<<endl<<"{{{{Adicionar creditos (Pre pago)}}}}"<<endl;
 this->addcreditos();
 break;
 
-case(6):
+case(5):
 cout<<endl<<"{{{{Registrar ligacao}}}}"<<endl;
 this->regliga();
 break;
 
-case(7):
+case(6):
 cout<<endl<<"{{{{Ver valor da conta(pos pago)}}}}"<<endl;
 this->verconta();
 break;
 
-case(8):
+case(7):
 cout<<endl<<"{{{{Listar Creditos e validade (Pre pago)}}}}"<<endl;
 this->listacredval();
 break;
 
-case(9):
+case(8):
 cout<<endl<<"{{{{Ver extrato de ligacoes}}}}"<<endl;
 this->extratoliga();
 break;
-
-case(10):
+/*
+case(9):
 cout<<endl<<"{{{{Listar os clientes}}}}"<<endl;
 this->listacliente();
 break;
 
-case(11):
+case(10):
 cout<<endl<<"{{{{Listar os planos}}}}"<<endl;
 this->listaplano();
 break;
 
-case(12):
+case(11):
 cout<<endl<<"{{{{Listar os celulares}}}}"<<endl;
 this->listacelular();
 break;
 
-case(13):
+case(12):
 cout<<endl<<"{{{{Listar os vencimentos}}}}"<<endl;
 this->listavencimento();
 break;
-
+*/
 case(0):
 cout<<endl<<"{{{{Adeus}}}}"<<endl;
 break;
@@ -141,17 +134,17 @@ void Interface::novocliente(){
 
 void Interface::novoplano(){
   string numero;
-  int opt;
-  int dia;
-  int mes;
-  int ano;
-  double credito;
+  int opt, dia, mes, ano;
+  double credito, fatura;
 vector<Celular> temp;
+
 temp = this->obterListaCelulares();
 bool existe = false;
+
 cout <<endl<< "Insira o numero de celular"<<endl;
 getline(cin,numero);
 getline(cin,numero);
+
 cout <<endl<< "Insira 0 para prepago ou 1 para pospago"<<endl;
 cin>>opt;
 
@@ -170,7 +163,7 @@ for (size_t i = 0; i<temp.size(); i++)
   if (temp[i].getNumero() == numero)
   {
     existe = true;
-    this->criarpos(temp[i],data);
+    this->criarCelular(temp[i],data);
     i=temp.size();
   }
 }
@@ -191,7 +184,7 @@ for (size_t i = 0; i<temp.size(); i++)
   if (temp[i].getNumero() == numero)
   {
     existe = true;
-    this->criarpre(temp[i],data,credito);
+    this->criarCelular(temp[i],data,credito);
     i=temp.size();
   }
 }
@@ -201,8 +194,11 @@ for (size_t i = 0; i<temp.size(); i++)
 
 }
 
-void Interface::habcelular(){
+
+void Interface::excluirc(){
   string numero;
+  vector<Celular> temp;
+  temp = this->obterListaCelulares();
 
 cout <<endl<< "Insira o numero do celular"<<endl;
 getline(cin,numero);
@@ -212,24 +208,7 @@ for (size_t i = 0; i<temp.size(); i++)
   if (temp[i].getNumero() == numero)
   {
     existe = true;
-    this->Habilitar(temp[i]);
-    i=temp.size();
-  }
-}
-}
-
-void Interface::excluircelular(){
-  string numero;
-
-cout <<endl<< "Insira o numero do celular"<<endl;
-getline(cin,numero);
-getline(cin,numero);
-for (size_t i = 0; i<temp.size(); i++)
-{
-  if (temp[i].getNumero() == numero)
-  {
-    existe = true;
-    this->excluir(temp[i]);
+    this->excluirCelular(temp[i]);
     i=temp.size();
   }
 }
@@ -247,7 +226,38 @@ cin>>credito;
 this->creditar(numero,credito);
 }
 
-void Interface::regliga(){
+void Interface::regliga()
+{
+  int dia, mes, ano,duracao;
+  vector<Celular> temp;
+  temp = this->obterListaCelulares();
+  cout <<endl<< "Insira o numero do celular"<<endl;
+  getline(cin,numero);
+  getline(cin,numero);
+  cout << "Insira o dia da ligacao"<<endl;
+  cin>>dia;
+  cout << "Insira o mes da ligacao"<<endl;
+  cin>>mes;
+  cout << "Insira o ano da ligacao"<<endl;
+  cin>>ano;
+  DataDMA datalig(dia,mes,ano);
+
+  cout <<endl<< "Insira a duracao em minutos da ligacao"<<endl;
+  cin>>duracao;
+
+  Hora hora();
+
+
+
+
+  for (size_t i = 0; i<temp.size(); i++)
+  {
+    if (temp[i].getNumero() == numero)
+    {
+      this->registrar_ligacao(temp[i],datalig,duracao,hora);
+      i=temp.size();
+    }
+  }
 
 }
 
@@ -292,7 +302,7 @@ extrato = this->obterExtrato(numero,dini,dfim);
 cout<<extrato<<endl;
 }
 
-void Interface::listaclientes()const{
+/*void Interface::listaclientes()const{
 std::vector<Cliente> temp;
 Cliente clientetemp;
 temp = this->obterListaClientes();
@@ -351,3 +361,4 @@ void Interface::printacliente(const Cliente &clientet)const{
 void Interface::printaconta(const Conta &contat)const{
   cout<<endl<<endl<<"Numero da conta: "<< contat.get_num_conta();
 }
+*/

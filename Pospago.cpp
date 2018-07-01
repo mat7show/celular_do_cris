@@ -5,7 +5,7 @@
 #include <list>
 
 using namespace std;
-using namespace operadora;
+using namespace tp2;
 
 Pospago::Pospago (string numero,const Cliente &dono, vector<Ligacao> listaChamadas,const DataDMA &vencimento):Celular(numero, dono, listaChamadas)
 {

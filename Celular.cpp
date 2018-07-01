@@ -3,7 +3,7 @@
 #include <list>
 #include "syscelular.h"
 using namespace std;
-using namespace operadora;
+using namespace tp2;
 
 
 
@@ -52,10 +52,9 @@ this->listaChamadas_ =listaChamadas;
 
 double Celular::get_creditos()const { return 0; }
 void Celular::set_creditos(double creditos){}
-DataDMA Celular::get_vencimento()const 
-{	
+DataDMA Celular::get_vencimento()const
+{
 	DataDMA h;
 	return h;
 }
 void Celular::set_vencimento(const DataDMA &vencimento){}
-
