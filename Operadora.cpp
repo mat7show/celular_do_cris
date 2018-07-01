@@ -15,7 +15,7 @@ Operadora::Operadora()
   nomeOperadora_ = "JP&MA Telecom";
 }
 
-Operadora::Operadora(string nome, vector<Cliente> clientes, vector<Celular> celulares )
+Operadora::Operadora(string nome, vector<Cliente> clientes, vector<Celular*> celulares )
 {
   clientes_ = clientes;
   celulares_ = celulares;
@@ -43,12 +43,14 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 	if (plano)
 	{
 		Pospago novo(numero, C, ent, h);
-		celulares_.push_back(novo);
+		Pospago* novop = &novo;
+		celulares_.push_back(novop);
 	}
 	else 
 	{
 		Prepago novo(numero, C, ent, 0, h);
-		celulares_.push_back(novo);
+		Prepago* novop = &novo;
+		celulares_.push_back(novop);
 	}
 }
 
@@ -66,7 +68,7 @@ void Operadora::excluirCliente(std::string cpf_cnpj)
 			flag = true;
 			for (size_t j =0; j<celulares_.size();j++)
 			{
-				if (celulares_[j].getDono().getcpf_cnpj() == cpf_cnpj)
+				if (celulares_[j]->getDono().getcpf_cnpj() == cpf_cnpj)
 				{
 					//joga excess�o do cliente ter celular
 				}
@@ -87,7 +89,7 @@ void Operadora::excluirCelular(string numero)
 	bool flag = false;
 	for(size_t i = 0; i<celulares_.size(); i++)
 	{
-		if(celulares_[i].getNumero() == numero)
+		if(celulares_[i]->getNumero() == numero)
 		{
 		  flag = true;
 		  celulares_[i] = celulares_[celulares_.size() - 1];
@@ -103,12 +105,12 @@ void Operadora::creditar(string numero, double valor)
   //excessão caso o plano não for prepago
   for(size_t i = 0; i<celulares_.size(); i++)
   {
-    if(celulares_[i].getNumero() == numero)
+    if(celulares_[i]->getNumero() == numero)
     {
-      DataDMA v = celulares_[i].get_vencimento() + 180;
-      double a = celulares_[i].get_creditos() + valor;
-      celulares_[i].set_creditos(a);
-      celulares_[i].set_vencimento(v);
+      DataDMA v = celulares_[i]->get_vencimento() + 180;
+      double a = celulares_[i]->get_creditos() + valor;
+      celulares_[i]->set_creditos(a);
+      celulares_[i]->set_vencimento(v);
     }
   }
 }
@@ -118,9 +120,9 @@ double Operadora::valorconta(string numero)
 //excessão caso não for pospago
   for(size_t i = 0; i<celulares_.size(); i++)
   {
-    if(celulares_[i].getNumero() == numero)
+    if(celulares_[i]->getNumero() == numero)
     {
-      return celulares_[i].get_fatura();
+      return celulares_[i]->get_fatura();
     }
   }
   //se chega aqui eh pq nao tem a conta
@@ -134,10 +136,10 @@ vector<Ligacao> Operadora::obterExtrato(string numConta)const
 
 	for (size_t i = 0; i<celulares_.size(); i++)
 	{
-		if (celulares_[i].getNumero() == numConta)
+		if (celulares_[i]->getNumero() == numConta)
 		{
 			flag = true;
-			chamadas_user = celulares_[i].getlistaChamadas();
+			chamadas_user = celulares_[i]->getlistaChamadas();
 			break;
 		}
 	}
@@ -154,10 +156,10 @@ vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial)const
 
 	for (size_t i = 0; i<celulares_.size(); i++)
 	{
-		if (celulares_[i].getNumero() == numConta)
+		if (celulares_[i]->getNumero() == numConta)
 		{
 			flag = true;
-			chamadas_user = celulares_[i].getlistaChamadas();
+			chamadas_user = celulares_[i]->getlistaChamadas();
 			break;
 		}
 	}
@@ -183,10 +185,10 @@ std::vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial, 
 
 	for (size_t i = 0; i<celulares_.size(); i++)
 	{
-		if (celulares_[i].getNumero() == numConta)
+		if (celulares_[i]->getNumero() == numConta)
 		{
 			flag = true;
-			chamadas_user = celulares_[i].getlistaChamadas();
+			chamadas_user = celulares_[i]->getlistaChamadas();
 			break;
 		}
 	}
@@ -210,7 +212,7 @@ vector<Cliente> Operadora::obterListaClientes()const
   return clientes_;
 }
 
-vector<Celular> Operadora::obterListaCelulares()const
+vector<Celular*> Operadora::obterListaCelulares()const
 {
   return celulares_;
 }
@@ -222,7 +224,7 @@ void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora 
 	Ligacao L(dataLig, duracao, horalig);
 	for(size_t i=0; i < celulares_.size(); i++)
 	{
-		if(C.getNumero() == celulares_[i].getNumero())
+		if(C.getNumero() == celulares_[i]->getNumero())
 		{
 			flag = true;
 			C.realizar_chamada(dataLig, duracao, horalig);
@@ -232,15 +234,15 @@ void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora 
 }
 
 
-vector<Celular> Operadora::listar_vencidos()
+vector<Celular*> Operadora::listar_vencidos()
 {
-	vector<Celular> ret;
+	vector<Celular*> ret;
 	DataDMA Hoje;
 
 	for (size_t i = 0; i < celulares_.size(); i++)
 	{
 
-		if (celulares_[i].get_vencimento() <= Hoje)
+		if (celulares_[i]->get_vencimento() <= Hoje)
 		{
 			ret.push_back(celulares_[i]);
 		}

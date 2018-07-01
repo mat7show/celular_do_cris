@@ -249,12 +249,12 @@ namespace tp2 {
 	{
 	private:
 		std::vector<Cliente> clientes_;
-		std::vector<Celular> celulares_;
+		std::vector<Celular*> celulares_;
 		std::string nomeOperadora_;
 
 	public:
 		Operadora();
-		Operadora(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> contas);
+		Operadora(std::string nome, std::vector<Cliente> clientes, std::vector<Celular*> contas);
 
 		void inserirCliente(const Cliente &C);
 		void criarCelular(const Cliente &C, bool plano);
@@ -266,10 +266,10 @@ namespace tp2 {
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial)const;
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial, DataDMA dFinal)const;
 		std::vector<Cliente> obterListaClientes()const;
-		std::vector<Celular> obterListaCelulares()const;
+		std::vector<Celular*> obterListaCelulares()const;
 
 		void registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig);
-		std::vector<Celular> listar_vencidos();
+		std::vector<Celular*> listar_vencidos();
 
 
 
@@ -278,7 +278,7 @@ namespace tp2 {
 
 	class Interface : public Operadora {
 	public:
-		Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
+		Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular*> celulares);
 		int menu();
 		void novocliente();
 		//void novoplano();

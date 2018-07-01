@@ -7,7 +7,7 @@ using namespace std;
 using namespace tp2;
 
 
-Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular> celulares):Operadora(nome,clientes,celulares)
+Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular*> celulares):Operadora(nome,clientes,celulares)
 {
 
 }
@@ -138,7 +138,7 @@ void Interface::novoplano(){
   string numero;
   int opt, dia, mes, ano;
   double credito, fatura;
-vector<Celular> temp;
+vector<Celular*> temp;
 
 temp = this->obterListaCelulares();
 bool existe = false;
@@ -200,7 +200,7 @@ for (size_t i = 0; i<temp.size(); i++)
 void Interface::excluirc()
 {
   string numero;
-  vector<Celular> temp;
+  vector<Celular*> temp;
   temp = this->obterListaCelulares();
 
 cout <<endl<< "Insira o numero do celular"<<endl;
@@ -226,7 +226,7 @@ void Interface::regliga()
 {
   int dia, mes, ano,duracao;
   string numero;
-  vector<Celular> temp;
+  vector<Celular*> temp;
   temp = this->obterListaCelulares();
 
   cout <<endl<< "Insira o numero do celular"<<endl;
@@ -245,9 +245,9 @@ void Interface::regliga()
 
   for (size_t i = 0; i<temp.size(); i++)
   {
-    if (temp[i].getNumero() == numero)
+    if (temp[i]->getNumero() == numero)
     {
-      this->registrar_ligacao(temp[i], datalig, duracao, horal);
+      this->registrar_ligacao(*temp[i], datalig, duracao, horal);
       i=temp.size();
     }
   }
@@ -318,11 +318,11 @@ this->printacliente(clientetemp);
 }
 /*
 void Interface::listaplanos()const{
-std::vector<Celular> temp;
+std::vector<Celular*> temp;
 Celular celulartemp;
 temp = this->obterListaPlanos();
 
-for(std::vector<Celular>::const_iterator i = temp.begin(); i != temp.end(); ++i)
+for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
 {
 celulartemp =*i;
 this->printaplano(celulartemp);
@@ -330,11 +330,11 @@ this->printaplano(celulartemp);
 }
 
 void Interface::listacelulares()const{
-std::vector<Celular> temp;
+std::vector<Celular*> temp;
 Celular celulartemp;
 temp = this->obterListaCelulares();
 
-for(std::vector<Celular>::const_iterator i = temp.begin(); i != temp.end(); ++i)
+for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
 {
 celulartemp =*i;
 this->printacelular(celulartemp);
@@ -342,11 +342,11 @@ this->printacelular(celulartemp);
 }
 
 void Interface::listavencimentos()const{
-std::vector<Celular> temp;
+std::vector<Celular*> temp;
 Celular celulartemp;
 temp = this->obterListaPlanos();
 
-for(std::vector<Celular>::const_iterator i = temp.begin(); i != temp.end(); ++i)
+for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
 {
 celulartemp =*i;
 this->printaplano(celulartemp);
