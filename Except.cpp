@@ -2,6 +2,7 @@
 
 #include "syscelular.h"
 
+using namespace tp2;
 
 /*    
 ideias boas pra excessoes:
