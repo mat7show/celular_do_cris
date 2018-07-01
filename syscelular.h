@@ -179,11 +179,11 @@ namespace tp2 {
 		std::string numero_;
 		Cliente dono_;
 		std::vector<Ligacao> listaChamadas_;
-
+		
 
 	public:
 
-		static int prox_numero;
+		
 
 		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
@@ -222,6 +222,10 @@ namespace tp2 {
 		void set_creditos(double creditos);
 		void set_validade(const DataDMA &validade);
 		static int get_custo(int duracao);
+		std::string get_plano();
+
+		void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
+
 
 
 
@@ -239,6 +243,9 @@ namespace tp2 {
 		void set_vencimento(const DataDMA &vencimento);
 		double get_fatura()const;
 		void set_fatura(double fatura);
+		void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
+
+		std::string get_plano();
 
 
 	};

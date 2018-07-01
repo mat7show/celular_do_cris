@@ -42,17 +42,19 @@ void Prepago::set_validade(const DataDMA &validade)
 
 
 
-string Celular::get_plano()
+string Prepago::get_plano()
 {
 	return "Pre-pago";
 }
 
-void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
+void Prepago::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 {
 	if (duracao*custo_p_min > get_creditos())
 	{
 		throw ExceptCreditoIns("Creditos insuficientes para a chamada");
 	}
+	int novo_cred = get_creditos() - duracao * custo_p_min;
+	set_creditos(novo_cred);
 	Ligacao L(dataLig, duracao, horalig);
-	listaChamadas_.push_back(L);
+	getlistaChamadas().push_back(L);
 }

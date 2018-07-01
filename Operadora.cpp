@@ -35,20 +35,25 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 {
 	vector<Ligacao> ent;
 	char buff[20];
-	_itoa_s(Celular::prox_numero, buff, 10);
-	string numero(buff);
+	int prox_num;
+	
+	prox_num = celulares_.size();
+	_itoa_s(prox_num, buff, 10);
+	string numero_s(buff);
+
 	DataDMA h;
 	h = h + 30;
 
 	if (plano)
 	{
-		Pospago novo(numero, C, ent, h);
+		
+		Pospago novo(numero_s, C, ent, h);
 		Pospago* novop = &novo;
 		celulares_.push_back(novop);
 	}
 	else 
 	{
-		Prepago novo(numero, C, ent, 0, h);
+		Prepago novo(numero_s, C, ent, 0, h);
 		Prepago* novop = &novo;
 		celulares_.push_back(novop);
 	}

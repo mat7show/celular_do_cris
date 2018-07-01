@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include "syscelular.h"
-#include <list>
 
 using namespace std;
 using namespace tp2;
@@ -34,7 +33,7 @@ string Celular::get_plano()
 	return "Pos-pago";
 }
 
-double Pospago::get_fatura ()const
+double Pospago::get_fatura()const
 {
 	return fatura_;
 }
@@ -43,8 +42,8 @@ void Pospago::set_fatura(double fatura)
 	this->fatura_= fatura;
 }
 
-void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
+void Pospago::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 {
 	Ligacao L(dataLig, duracao, horalig);
-	listaChamadas_.push_back(L);
+	getlistaChamadas().push_back(L);
 }
