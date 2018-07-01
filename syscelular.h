@@ -120,14 +120,13 @@ namespace operadora {
 	private:
 		double creditos_;
 		DataDMA validade_;
-		bool plano;
 	public:
-		Prepago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, double creditos,DataDMA validade );
+		Prepago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, double creditos,const DataDMA &validade );
 		double get_creditos ()const;
 		DataDMA get_validade ()const;
 		void set_creditos(double creditos);
-		void set_creditos(DataDMA vencimento);
-		bool get_plano();
+		void set_validade(const DataDMA &validade);
+
 
 	};
 
@@ -135,12 +134,12 @@ namespace operadora {
 	{
 	private:
 		DataDMA vencimento_;
-		bool plano;
+
 	public:
-		Pospago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, double creditos,const DataDMA &vencimento);
+		Pospago (std::string numero,const Cliente &dono, std::list<Chamada> listaChamadas, const DataDMA &vencimento);
 		DataDMA get_vencimento ()const;
 		void set_vencimento(const DataDMA &vencimento);
-		bool get_plano();
+
 
 	};
 

@@ -21,14 +21,14 @@ DataDMA Prepago::get_validade ()const
 {
 return validade_;
 }
-]
+
 
 void Prepago::set_creditos(double creditos)
 {
 this->creditos_ = creditos;
 }
 
-void Prepago::set_creditos(const DataDMA &validade)
+void Prepago::set_validade(const DataDMA &validade)
 {
 this->validade_ = validade;
 }
