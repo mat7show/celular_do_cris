@@ -49,4 +49,22 @@ std::string ExceptContaInex::what()
 }
 
 
+ExceptData::ExceptData(std::string e)
+{
+	erro_ = e;
+}
+
+std::string ExceptData::what()
+{
+	return erro_;
+}
+
+
+
+
+ExceptOutras::ExceptOutras(std::string what) : runtime_error(what)
+{
+	erro_ = what;
+}
+
 

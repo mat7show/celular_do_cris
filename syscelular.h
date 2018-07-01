@@ -45,11 +45,25 @@ namespace tp2
 
 	};
 
-
-	class ExceptOutras : public std::runtime_error
+	class ExceptData
 	{
+	private:
+		std::string erro_;
+
 	public:
-		ExceptOutras(const char* what);
+		ExceptData(std::string e);
+		std::string what();
+
+	};
+
+
+	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
+	{
+	private:
+		std::string erro_;
+	public:
+		ExceptOutras(std::string what);
+
 	};
 
 
@@ -71,13 +85,7 @@ namespace tp2
 
 	};
 
-	class ExcData
-	{
-	private:
-
-	public:
-
-	};
+	
 
 
 
