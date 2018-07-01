@@ -3,7 +3,7 @@
 
 
 using namespace std;
-using namespace operadora;
+using namespace tp2;
 
 
 Hora::Hora()
@@ -11,11 +11,11 @@ Hora::Hora()
 	time_t result = time(NULL);
 	char arrchar[100];
 	ctime_s(arrchar,100,&result);
-	
+
 	string stamp(arrchar);
 
 	timestamp_ = stamp;
-		
+
 }
 
 

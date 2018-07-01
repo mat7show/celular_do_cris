@@ -5,7 +5,7 @@
 #include <list>
 
 using namespace std;
-using namespace operadora;
+using namespace tp2;
 
 static int custo_p_min = 3;
 
@@ -56,4 +56,3 @@ void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 	Ligacao L(dataLig, duracao, horalig);
 	listaChamadas_.push_back(L);
 }
-

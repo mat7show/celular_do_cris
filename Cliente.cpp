@@ -3,7 +3,7 @@
 #include <vector>
 #include "syscelular.h"
 using namespace std;
-using namespace operadora;
+using namespace tp2;
 
 Cliente::Cliente(string name, string id, string add)
 {
