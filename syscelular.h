@@ -270,7 +270,7 @@ namespace tp2
 		std::vector<Cliente> obterListaClientes()const;
 		std::vector<Celular> obterListaCelulares()const;
 
-		void registrar_ligacao(const Celular &C, const DataDMA &dataLig, int duracao, Hora horalig);
+		void registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig);
 		std::vector<Celular> listar_vencidos();
 
 
@@ -280,7 +280,6 @@ namespace tp2
 
 	class Interface : public Operadora {
 	public:
-<<<<<<< HEAD
 	Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
 	int menu();
 	void novocliente();
@@ -291,7 +290,6 @@ namespace tp2
 	void verconta();
 	void listacredval();
 	void extratoliga();
-=======
 		Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> celulares);
 		int menu();
 		void novocliente();
@@ -302,7 +300,6 @@ namespace tp2
 		void verconta();
 		void listacredval();
 		void extratoliga();
->>>>>>> master
 
 
 

@@ -303,7 +303,7 @@ DataDMA dfim(dfinal,mfinal,afinal);
 
 temp = this->obterExtrato(numero,dini,dfim);
 }
-}
+
 
 /*void Interface::listaclientes()const{
 std::vector<Cliente> temp;
