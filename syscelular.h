@@ -186,8 +186,10 @@ namespace tp2
 		std::vector<Ligacao> listaChamadas_;
 
 
-
 	public:
+
+		static int prox_numero;
+
 		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
 
@@ -209,6 +211,7 @@ namespace tp2
 		virtual	void set_fatura(double fatura);
 
 		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
+
 	};
 
 
@@ -259,7 +262,7 @@ namespace tp2
 		Operadora(std::string nome, std::vector<Cliente> clientes, std::vector<Celular> contas);
 
 		void inserirCliente(const Cliente &C);
-		void criarCelular(const Cliente &C);
+		void criarCelular(const Cliente &C, bool plano);
 		void excluirCliente(std::string cpf_cnpj);
 		void excluirCelular(std::string numConta);
 		void creditar(std::string numero, double valor);

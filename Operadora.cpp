@@ -31,9 +31,25 @@ void Operadora::inserirCliente(const Cliente &C)
 	else clientes_.push_back(C);
 }
 
-void Operadora::criarCelular( const Cliente &C)
+void Operadora::criarCelular( const Cliente &C, bool plano)
 {
+	vector<Ligacao> ent;
+	char buff[20];
+	itoa(Celular::prox_numero, buff, 10);
+	string numero(buff);
+	DataDMA h;
+	h = h + 30;
 
+	if (plano)
+	{
+		Pospago novo(numero, C, ent, h);
+		celulares_.push_back(novo);
+	}
+	else 
+	{
+		Prepago novo(numero, C, ent, 0, h);
+		celulares_.push_back(novo);
+	}
 }
 
 
