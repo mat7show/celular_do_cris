@@ -68,6 +68,27 @@ namespace operadora {
 
 	};
 
+
+		class Ligacao
+		{
+		private:
+			DataDMA data_ligacao_;
+			Hora hora_ligacao_;
+			int duracao_;
+
+		public:
+			Ligacao(DataDMA dataLig, int duracao, Hora horalig);
+			Ligacao(const Ligacao &M);
+
+
+			DataDMA get_data_ligacao()const;
+			Hora get_hora_ligacao()const;
+			int get_duracao()const;
+			std::string get_info_ligacao()const;
+		};
+
+
+
 	class Chamada
 	{
 	private:
@@ -123,8 +144,14 @@ namespace operadora {
 		void setDono(const Cliente &dono);
 		void setlistaChamadas(std::vector<Ligacao> listaChamadas);
 
-		virtual std::string get_plano();
 
+		virtual std::string get_plano();
+		virtual	double get_creditos ()const;
+		virtual	DataDMA get_validade ()const;
+		virtual	void set_creditos(double creditos);
+		virtual	void set_validade(const DataDMA &validade);
+		virtual	DataDMA get_vencimento ()const;
+		virtual	void set_vencimento(const DataDMA &vencimento);
 	};
 
 
@@ -138,7 +165,6 @@ namespace operadora {
 		double get_creditos ()const;
 		DataDMA get_validade ()const;
 		void set_creditos(double creditos);
-
 		void set_validade(const DataDMA &validade);
 
 
@@ -175,11 +201,14 @@ namespace operadora {
 		void criarCelular(const Cliente &C);
 		void excluirCliente(std::string cpf_cnpj);
 		void excluirCelular(std::string numConta);
+		void creditar(std::string numero, double valor);
 		std::vector<Ligacao> obterExtrato(std::string numConta)const;
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial)const;
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial, DataDMA dFinal)const;
 		std::vector<Cliente> obterListaClientes()const;
 		std::vector<Celular> obterListaCelulares()const;
+
+
 
 	};
 
@@ -193,30 +222,6 @@ namespace operadora {
 
 
 
-
-
-
-
-
-
-
-	class Ligacao
-	{
-	private:
-		DataDMA data_ligacao_;
-		Hora hora_ligacao_;
-		int duracao_;
-
-	public:
-		Ligacao(DataDMA dataLig, int duracao, Hora horalig);
-		Ligacao(const Ligacao &M);
-
-
-		DataDMA get_data_ligacao()const;
-		Hora get_hora_ligacao()const;
-		int get_duracao()const;
-		std::string get_info_ligacao()const;
-	};
 
 
 

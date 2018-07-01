@@ -81,6 +81,18 @@ void Operadora::excluirCelular(string numero)
 	//if(!flag) //throw excessao de conta nao existente
 }
 
+void Operadora::creditar(string numero, double valor)
+{
+  for(size_t i = 0; i<celulares_.size(); i++)
+  {
+    if(celulares_[i].getNumero() == numero)
+    {
+      double a = celulares_[i].get_creditos() + valor;
+      celulares_[i].set_creditos(a);
+    }
+  }
+}
+
 
 
 vector<Ligacao> Operadora::obterExtrato(string numConta)const

@@ -138,7 +138,7 @@ void Interface::novocliente(){
   cout<<"Cliente inserido"<<endl;
   }
 
-  
+
 void Interface::novoplano(){
   string numero;
   int opt;
@@ -244,7 +244,7 @@ getline(cin,numero);
 getline(cin,numero);
 cout <<endl<< "Insira a quantidade de creditos"<<endl;
 cin>>credito;
-this->creditar(numero,credito)
+this->creditar(numero,credito);
 }
 
 void Interface::regliga(){

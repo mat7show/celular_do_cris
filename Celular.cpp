@@ -49,3 +49,10 @@ void Celular::setlistaChamadas(vector<Ligacao> listaChamadas)
 {
 this->listaChamadas_ =listaChamadas;
 }
+
+double Celular::get_creditos ()const{}
+DataDMA Celular::get_validade ()const{}
+void Celular::set_creditos(double creditos){}
+void Celular::set_validade(const DataDMA &validade){}
+DataDMA Celular::get_vencimento ()const{}
+void Celular::set_vencimento(const DataDMA &vencimento){}
