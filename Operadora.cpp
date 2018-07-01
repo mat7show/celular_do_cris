@@ -83,12 +83,15 @@ void Operadora::excluirCelular(string numero)
 
 void Operadora::creditar(string numero, double valor)
 {
+  //excessão caso o plano não for prepago
   for(size_t i = 0; i<celulares_.size(); i++)
   {
     if(celulares_[i].getNumero() == numero)
     {
+      DataDMA v = celulares_[i].get_validade() + 180;
       double a = celulares_[i].get_creditos() + valor;
       celulares_[i].set_creditos(a);
+      celulares_[i].set_validade(v);
     }
   }
 }
