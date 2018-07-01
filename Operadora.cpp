@@ -88,10 +88,10 @@ void Operadora::creditar(string numero, double valor)
   {
     if(celulares_[i].getNumero() == numero)
     {
-      DataDMA v = celulares_[i].get_validade() + 180;
+      DataDMA v = celulares_[i].get_vencimento() + 180;
       double a = celulares_[i].get_creditos() + valor;
       celulares_[i].set_creditos(a);
-      celulares_[i].set_validade(v);
+      celulares_[i].set_vencimento(v);
     }
   }
 }
@@ -106,6 +106,7 @@ double Operadora::valorconta(string numero)
       return celulares_[i].get_fatura();
     }
   }
+  //joga excessao
 }
 
 vector<Ligacao> Operadora::obterExtrato(string numConta)const
@@ -122,7 +123,7 @@ vector<Ligacao> Operadora::obterExtrato(string numConta)const
 			break;
 		}
 	}
-	if (!flag) //throw excessao de conta inexistente
+	//if (!flag) //throw excessao de conta inexistente
 
 
 	return chamadas_user;
@@ -204,7 +205,7 @@ void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora 
 	Ligacao L(dataLig, duracao, horalig);
 	for(size_t i=0; i < celulares_.size(); i++)
 	{
-		if(C.getNumero() == celulares_[i].getNumero)
+		if(C.getNumero() == celulares_[i].getNumero())
 		{
 			flag = true;
 			C.realizar_chamada(dataLig, duracao, horalig);
@@ -217,6 +218,16 @@ void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora 
 vector<Celular> Operadora::listar_vencidos()
 {
 	vector<Celular> ret;
+	DataDMA Hoje;
+
+	for (size_t i = 0; i < celulares_.size(); i++)
+	{
+		
+		if (celulares_[i].get_vencimento() <= Hoje)
+		{
+			ret.push_back(celulares_[i]);
+		}
+	}
 
 	return ret;
 }

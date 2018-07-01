@@ -7,6 +7,8 @@
 using namespace std;
 using namespace operadora;
 
+static int custo_p_min = 3;
+
 Prepago::Prepago (string numero,const Cliente &dono, vector<Ligacao> listaChamadas,double creditos,const DataDMA &validade ):Celular(numero, dono, listaChamadas)
 {
 
@@ -44,3 +46,14 @@ string Celular::get_plano()
 {
 	return "Pre-pago";
 }
+
+void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
+{
+	if (duracao*custo_p_min > get_creditos())
+	{
+		//lanca excessao credito insuficient
+	}
+	Ligacao L(dataLig, duracao, horalig);
+	listaChamadas_.push_back(L);
+}
+

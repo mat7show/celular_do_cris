@@ -50,15 +50,12 @@ void Celular::setlistaChamadas(vector<Ligacao> listaChamadas)
 this->listaChamadas_ =listaChamadas;
 }
 
-double Celular::get_creditos ()const{}
-DataDMA Celular::get_validade ()const{}
+double Celular::get_creditos()const { return 0; }
 void Celular::set_creditos(double creditos){}
-void Celular::set_validade(const DataDMA &validade){}
-DataDMA Celular::get_vencimento ()const{}
+DataDMA Celular::get_vencimento()const 
+{	
+	DataDMA h;
+	return h;
+}
 void Celular::set_vencimento(const DataDMA &vencimento){}
 
-void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
-{
-	Ligacao L(dataLig, duracao, horalig);
-	listaChamadas_.push_back(L);
-}

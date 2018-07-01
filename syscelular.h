@@ -3,7 +3,7 @@
 #define SYSCELULAR_H
 
 #include <string>
-#include <list>
+#include <vector>
 
 //using namespace std;
 
@@ -147,15 +147,13 @@ namespace operadora {
 
 		virtual std::string get_plano();
 		virtual	double get_creditos ()const;
-		virtual	DataDMA get_validade ()const;
 		virtual	void set_creditos(double creditos);
-		virtual	void set_validade(const DataDMA &validade);
 		virtual	DataDMA get_vencimento ()const;
 		virtual	void set_vencimento(const DataDMA &vencimento);
 		virtual double get_fatura ()const;
 		virtual	void set_fatura(double fatura);
 		
-		void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
+		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
 	};
 
 
@@ -170,6 +168,7 @@ namespace operadora {
 		DataDMA get_validade ()const;
 		void set_creditos(double creditos);
 		void set_validade(const DataDMA &validade);
+		static int get_custo(int duracao);
 
 
 

@@ -42,3 +42,9 @@ void Pospago::set_fatura(double fatura)
 {
 	this->fatura_= fatura;
 }
+
+void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
+{
+	Ligacao L(dataLig, duracao, horalig);
+	listaChamadas_.push_back(L);
+}
