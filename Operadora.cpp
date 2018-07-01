@@ -196,3 +196,27 @@ vector<Celular> Operadora::obterListaCelulares()const
 {
   return celulares_;
 }
+
+
+void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig)
+{
+	bool flag = false;
+	Ligacao L(dataLig, duracao, horalig);
+	for(size_t i=0; i < celulares_.size(); i++)
+	{
+		if(C.getNumero() == celulares_[i].getNumero)
+		{
+			flag = true;
+			C.realizar_chamada(dataLig, duracao, horalig);
+		}
+	}
+	//if (!flag) excessao de nao tem esse numero
+}
+
+
+vector<Celular> Operadora::listar_vencidos()
+{
+	vector<Celular> ret;
+
+	return ret;
+}

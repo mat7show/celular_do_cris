@@ -56,3 +56,9 @@ void Celular::set_creditos(double creditos){}
 void Celular::set_validade(const DataDMA &validade){}
 DataDMA Celular::get_vencimento ()const{}
 void Celular::set_vencimento(const DataDMA &vencimento){}
+
+void Celular::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
+{
+	Ligacao L(dataLig, duracao, horalig);
+	listaChamadas_.push_back(L);
+}

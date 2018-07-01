@@ -154,6 +154,8 @@ namespace operadora {
 		virtual	void set_vencimento(const DataDMA &vencimento);
 		virtual double get_fatura ()const;
 		virtual	void set_fatura(double fatura);
+		
+		void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
 	};
 
 
@@ -213,6 +215,10 @@ namespace operadora {
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial, DataDMA dFinal)const;
 		std::vector<Cliente> obterListaClientes()const;
 		std::vector<Celular> obterListaCelulares()const;
+
+		void registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig);
+		std::vector<Celular> listar_vencidos();
+		
 
 
 
