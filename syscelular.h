@@ -139,15 +139,6 @@ namespace tp2 {
 
 
 
-	class Chamada
-	{
-	private:
-
-
-	public:
-
-	};
-
 
 	class Cliente
 	{
@@ -198,13 +189,10 @@ namespace tp2 {
 
 
 		virtual std::string get_plano();
-		virtual	double get_creditos()const;
-		virtual	void set_creditos(double creditos);
 		virtual	DataDMA get_vencimento()const;
 		virtual	void set_vencimento(const DataDMA &vencimento);
-		virtual double get_fatura()const;
-		virtual	void set_fatura(double fatura);
-
+		virtual	void set_credfat(double fatura);
+		virtual	double get_credfat()const;
 		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
 
 	};
@@ -215,16 +203,27 @@ namespace tp2 {
 	private:
 		double creditos_;
 		DataDMA validade_;
+		static const int custo_p_min = 3;
+
+		
+
 	public:
 		Prepago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos, const DataDMA &validade);
 		double get_creditos()const;
 		DataDMA get_validade()const;
 		void set_creditos(double creditos);
 		void set_validade(const DataDMA &validade);
-		static int get_custo(int duracao);
-		std::string get_plano();
+		static int get_custo_p_min();
 
+
+
+
+		DataDMA get_vencimento()const;
+		void set_vencimento(const DataDMA &vencimento);
+		std::string get_plano();
 		void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
+		double get_credfat()const;
+		void set_credfat(double fatura);
 
 
 
@@ -243,9 +242,14 @@ namespace tp2 {
 		void set_vencimento(const DataDMA &vencimento);
 		double get_fatura()const;
 		void set_fatura(double fatura);
-		void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
 
+
+
+		void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
+		double get_credfat()const;
 		std::string get_plano();
+		void set_credfat(double fatura);
+
 
 
 	};

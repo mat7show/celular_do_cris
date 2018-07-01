@@ -28,7 +28,7 @@ void Pospago::set_vencimento(const DataDMA &vencimento)
 }
 
 
-string Celular::get_plano()
+string Pospago::get_plano()
 {
 	return "Pos-pago";
 }
@@ -47,3 +47,14 @@ void Pospago::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 	Ligacao L(dataLig, duracao, horalig);
 	getlistaChamadas().push_back(L);
 }
+
+double Pospago::get_credfat()const
+{
+	return fatura_;
+}
+
+void Pospago::set_credfat(double fatura)
+{
+	fatura_ = fatura;
+}
+

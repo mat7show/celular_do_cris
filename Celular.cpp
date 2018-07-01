@@ -52,11 +52,5 @@ void Celular::setlistaChamadas(vector<Ligacao> listaChamadas)
 this->listaChamadas_ =listaChamadas;
 }
 
-double Celular::get_creditos()const { return 0; }
-void Celular::set_creditos(double creditos){}
-DataDMA Celular::get_vencimento()const
-{
-	DataDMA h;
-	return h;
-}
-void Celular::set_vencimento(const DataDMA &vencimento){}
+
+

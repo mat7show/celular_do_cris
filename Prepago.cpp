@@ -7,7 +7,6 @@
 using namespace std;
 using namespace tp2;
 
-static int custo_p_min = 3;
 
 Prepago::Prepago (string numero,const Cliente &dono, vector<Ligacao> listaChamadas,double creditos,const DataDMA &validade ):Celular(numero, dono, listaChamadas)
 {
@@ -57,4 +56,30 @@ void Prepago::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 	set_creditos(novo_cred);
 	Ligacao L(dataLig, duracao, horalig);
 	getlistaChamadas().push_back(L);
+}
+
+double Prepago::get_credfat()const
+{
+	return creditos_;
+}
+
+void Prepago::set_credfat(double fatura)
+{
+	set_creditos(fatura);
+}
+
+int Prepago::get_custo_p_min()
+{
+	return custo_p_min;
+}
+
+
+void Prepago::set_vencimento(const DataDMA &vencimento)
+{
+	validade_ = vencimento;
+}
+
+DataDMA Prepago::get_vencimento()const
+{
+	return validade_;
 }

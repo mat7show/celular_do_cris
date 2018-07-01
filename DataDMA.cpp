@@ -2,6 +2,8 @@
 #include <string>
 #include <ctime>
 #include <sstream>
+#include <cmath>
+
 
 
 #include "syscelular.h"

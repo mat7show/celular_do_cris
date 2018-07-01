@@ -60,6 +60,10 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 }
 
 
+
+
+
+
 //eu ia usar os iteradores elegantes das listas, mas dado nosso
 // tempo (in)disponivel achei melhor usar vetor msm
 
@@ -112,10 +116,10 @@ void Operadora::creditar(string numero, double valor)
   {
     if(celulares_[i]->getNumero() == numero)
     {
-      DataDMA v = celulares_[i]->get_vencimento() + 180;
-      double a = celulares_[i]->get_creditos() + valor;
-      celulares_[i]->set_creditos(a);
-      celulares_[i]->set_vencimento(v);
+		DataDMA v = celulares_[i]->get_vencimento() + 180;
+		double a = celulares_[i]->get_credfat() + valor;
+		celulares_[i]->set_credfat(a);
+		celulares_[i]->set_vencimento(v);
     }
   }
 }
@@ -127,7 +131,7 @@ double Operadora::valorconta(string numero)
   {
     if(celulares_[i]->getNumero() == numero)
     {
-      return celulares_[i]->get_fatura();
+      return celulares_[i]->get_credfat();
     }
   }
   //se chega aqui eh pq nao tem a conta
