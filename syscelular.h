@@ -188,12 +188,12 @@ namespace tp2 {
 		void setlistaChamadas(std::vector<Ligacao> listaChamadas);
 
 
-		virtual std::string get_plano();
-		virtual	DataDMA get_vencimento()const;
-		virtual	void set_vencimento(const DataDMA &vencimento);
-		virtual	void set_credfat(double fatura);
-		virtual	double get_credfat()const;
-		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig);
+		virtual std::string get_plano()=0;
+		virtual	DataDMA get_vencimento()const = 0;
+		virtual	void set_vencimento(const DataDMA &vencimento) = 0;
+		virtual	void set_credfat(double fatura) = 0;
+		virtual	double get_credfat()const = 0;
+		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig) = 0;
 
 	};
 
@@ -279,7 +279,7 @@ namespace tp2 {
 		std::vector<Cliente> obterListaClientes()const;
 		std::vector<Celular*> obterListaCelulares()const;
 
-		void registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig);
+		void registrar_ligacao(Celular* C, DataDMA dataLig, int duracao, Hora horalig);
 		std::vector<Celular*> listar_vencidos();
 
 

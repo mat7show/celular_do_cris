@@ -247,7 +247,7 @@ void Interface::regliga()
   {
     if (temp[i]->getNumero() == numero)
     {
-      this->registrar_ligacao(*temp[i], datalig, duracao, horal);
+      this->registrar_ligacao(temp[i], datalig, duracao, horal);
       i=temp.size();
     }
   }

@@ -227,16 +227,16 @@ vector<Celular*> Operadora::obterListaCelulares()const
 }
 
 
-void Operadora::registrar_ligacao(Celular C, DataDMA dataLig, int duracao, Hora horalig)
+void Operadora::registrar_ligacao(Celular* C, DataDMA dataLig, int duracao, Hora horalig)
 {
 	bool flag = false;
 	Ligacao L(dataLig, duracao, horalig);
 	for(size_t i=0; i < celulares_.size(); i++)
 	{
-		if(C.getNumero() == celulares_[i]->getNumero())
+		if(C->getNumero() == celulares_[i]->getNumero())
 		{
 			flag = true;
-			C.realizar_chamada(dataLig, duracao, horalig);
+			C->realizar_chamada(dataLig, duracao, horalig);
 		}
 	}
 	if (!flag) throw ExceptContaInex("Numero inexistente");  //excessao de nao tem esse numero
