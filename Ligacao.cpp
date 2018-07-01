@@ -4,11 +4,10 @@
 #include "syscelular.h"
 using namespace operadora;
 
-Ligacao::Ligacao(DataDMA dataLig, int duracao)
+Ligacao::Ligacao(DataDMA dataLig, int duracao, Hora horalig)
 {
   data_ligacao_ = dataLig;
-  //TEMQ COLOCAR HORA_LIGACAO AQUI COMO ENTRADA
-  //hora_ligacao = horalig;
+  hora_ligacao_ = horalig;
   duracao_ = duracao;
 
 }
@@ -16,7 +15,7 @@ Ligacao::Ligacao(DataDMA dataLig, int duracao)
 Ligacao::Ligacao(const Ligacao &M)
 {
 	data_ligacao_ = M.data_ligacao_;
-	//hora_ligacao = M.hora_ligacao;
+	hora_ligacao_ = M.hora_ligacao_;
 	duracao_ = M.duracao_;
 }
 
@@ -27,10 +26,10 @@ DataDMA Ligacao::get_data_ligacao()const
 
 
 
-//Hora get_hora_ligacao()const
-//{
-//	return hora_ligacao_
-//}
+Hora Ligacao::get_hora_ligacao()const
+{
+	return hora_ligacao_;
+}
 
 int Ligacao::get_duracao()const
 {

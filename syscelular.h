@@ -202,18 +202,16 @@ namespace operadora {
 	{
 	private:
 		DataDMA data_ligacao_;
-
-		//comentei pra compilar enqnto nao implemento HORA
-		//Hora hora_ligacao_;
+		Hora hora_ligacao_;
 		int duracao_;
 
 	public:
-		Ligacao(DataDMA dataLig, int duracao);
+		Ligacao(DataDMA dataLig, int duracao, Hora horalig);
 		Ligacao(const Ligacao &M);
 
 
 		DataDMA get_data_ligacao()const;
-		//Hora get_hora_ligacao()const;
+		Hora get_hora_ligacao()const;
 		int get_duracao()const;
 	};
 
