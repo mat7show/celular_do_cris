@@ -118,23 +118,11 @@ void Interface::novocliente(){
 
   string cpf_cnpj;
   string nome;
-  string getendereco;
-  /*
-  vector<Cliente> temp;
-  temp = this->obterListaClientes();
-  bool existe = false;*/
+  string endereco;
+
   cout<<"Digite o cpf ou cnpj do cliente"<<endl;
   getline(cin,cpf_cnpj);
-  getline(cin,cpf_cnpj);/*
-  for (size_t i = 0; i<temp.size(); i++)
-  {
-    if (temp[i].getcpf_cnpj() == cpf_cnpj)
-    {
-      existe = true;
-      this->criarConta(temp[i]);
-      i=temp.size();
-    }
-  }*/
+  getline(cin,cpf_cnpj);
   cout<<"Digite o nome do cliente"<<endl;
   getline(cin,nome);
   getline(cin,nome);
@@ -142,10 +130,15 @@ void Interface::novocliente(){
   cout<<"Digite o endereco do cliente"<<endl;
   getline(cin,endereco);
   getline(cin,endereco);
-  this->inserirCliente(cpf_cnpj,nome,endereco);
+
+  Cliente a(cpf_cnpj,nome, endereco);
+
+  this->inserirCliente(a);
   //try
   cout<<"Cliente inserido"<<endl;
   }
+
+  
 void Interface::novoplano(){
   string numero;
   int opt;
@@ -358,4 +351,3 @@ void Interface::printacliente(const Cliente &clientet)const{
 void Interface::printaconta(const Conta &contat)const{
   cout<<endl<<endl<<"Numero da conta: "<< contat.get_num_conta();
 }
-

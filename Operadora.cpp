@@ -25,14 +25,14 @@ void Operadora::inserirCliente(const Cliente &C)
 {
 	if (clientes_.max_size() <= clientes_.size())
 	{
-		//joga excessão de clientes_cheio aqui
+		//joga excessï¿½o de clientes_cheio aqui
 	}
 	else clientes_.push_back(C);
 }
 
 void Operadora::criarCelular( const Cliente &C)
 {
- 
+
 }
 
 
@@ -51,7 +51,7 @@ void Operadora::excluirCliente(std::string cpf_cnpj)
 			{
 				if (celulares_[j].getDono().getcpf_cnpj == cpf_cnpj)
 				{
-					//joga excessão do cliente ter celular
+					//joga excessï¿½o do cliente ter celular
 				}
 			}
 
@@ -59,18 +59,18 @@ void Operadora::excluirCliente(std::string cpf_cnpj)
 			clientes_[i] = clientes_[clientes_.size() - 1];
 			clientes_.pop_back();
 		}
-		 
-	 
+
+
 	}
 	//if (!flag) // joga excessao de cliente inexistente
 }
 
-void Operadora::excluirConta(string numConta)
+void Operadora::excluirCelular(string numero)
 {
 	bool flag = false;
 	for(size_t i = 0; i<celulares_.size(); i++)
 	{
-		if(celulares_[i].getNumero() == numConta)
+		if(celulares_[i].getNumero() == numero)
 		{
 		  flag = true;
 		  celulares_[i] = celulares_[celulares_.size() - 1];
@@ -120,15 +120,15 @@ vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial)const
 	}
 	//if (!flag) //throw excessao de conta inexistente
 
-  
-	for (size_t i = 0; i < chamadas_user.size(); i++) 
+
+	for (size_t i = 0; i < chamadas_user.size(); i++)
 	{
 		if (chamadas_user[i].get_data_ligacao > dInicial)
 		{
 			chamadas_ret.push_back(chamadas_user[i]);
 		}
 	}
-				
+
 	return chamadas_ret;
 }
 
@@ -159,7 +159,7 @@ std::vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial, 
 		}
 
 	return chamadas_ret;
-  
+
 }
 
 vector<Cliente> Operadora::obterListaClientes()const
@@ -171,5 +171,3 @@ vector<Celular> Operadora::obterListaCelulares()const
 {
   return celulares_;
 }
-
-

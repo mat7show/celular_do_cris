@@ -15,7 +15,7 @@ namespace operadora {
 	class Hora
 	{
 	private:
-		std::string timestamp_;	
+		std::string timestamp_;
 
 	public:
 		Hora();
@@ -174,7 +174,7 @@ namespace operadora {
 		void inserirCliente(const Cliente &C);
 		void criarCelular(const Cliente &C);
 		void excluirCliente(std::string cpf_cnpj);
-		void excluirConta(std::string numConta);
+		void excluirCelular(std::string numConta);
 		std::vector<Ligacao> obterExtrato(std::string numConta)const;
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial)const;
 		std::vector<Ligacao> obterExtrato(std::string numConta, DataDMA dInicial, DataDMA dFinal)const;
@@ -185,7 +185,7 @@ namespace operadora {
 
 	class Interface : public Operadora{
 	private:
-		
+
 
 	public:
 
