@@ -119,6 +119,16 @@ int Interface::menu()
     string erro = e.what();
     cout<<erro<<endl;
   }
+  catch (ExceptData &e)
+  {
+    string erro = e.what();
+    cout<<erro<<endl;
+  }
+  catch (ExceptVetorCheio &e)
+  {
+    string erro = e.what();
+    cout<<erro<<endl;
+  }
   }
 
 return menu;
@@ -212,14 +222,14 @@ void Interface::regliga()
   cout <<endl<< "Insira o numero do celular"<<endl;
   getline(cin,numero);
   getline(cin,numero);
-  cout << "Insira o dia da ligacao"<<endl;
+/*  cout << "Insira o dia da ligacao"<<endl;
   cin>>dia;
   cout << "Insira o mes da ligacao"<<endl;
   cin>>mes;
   cout << "Insira o ano da ligacao"<<endl;
   cin>>ano;
-
-  DataDMA datalig(dia,mes,ano);
+*/
+  DataDMA datalig;
   cout <<endl<< "Insira a duracao em minutos da ligacao"<<endl;
   cin>>duracao;
   Hora horal;
