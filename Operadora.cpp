@@ -59,16 +59,11 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 
 		if (plano)
 		{
-
-			Pospago novo(numero_s, C, ent, h);
-			Pospago* novop = &novo;
-			celulares_.push_back(novop);
+			celulares_.push_back(new Pospago(numero_s, C, ent, h));
 		}
 		else
 		{
-			Prepago novo(numero_s, C, ent, 0, h);
-			Prepago* novop = &novo;
-			celulares_.push_back(novop);
+			celulares_.push_back(new Prepago(numero_s, C, ent, 0, h));
 		}
 	}
 	catch (const ExceptOutras &e)
@@ -129,7 +124,9 @@ void Operadora::excluirCelular(string numero)
 			if (celulares_[i]->getNumero() == numero)
 			{
 				flag = true;
+				delete celulares_[i];
 				celulares_[i] = celulares_[celulares_.size() - 1];
+				
 				celulares_.pop_back();
 				break;
 			}
