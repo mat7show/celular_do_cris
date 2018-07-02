@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include<stdexcept>
 
 //using namespace std;
 
@@ -11,7 +12,7 @@
 
 namespace tp2 {
 
-	
+
 	static std::vector<std::string> erros_global;
 
 
@@ -23,11 +24,11 @@ namespace tp2 {
 		ExceptOpIleg(std::string e);
 		std::string what();
 	};
-	
 
-	
 
-	class ExceptVetorCheio 
+
+
+	class ExceptVetorCheio
 	{
 	private:
 		std::string erro_;
@@ -50,7 +51,8 @@ namespace tp2 {
 
 	};
 
-	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
+	class ExceptOutras : public std::runtime_error
+	 //ja vem com funcao what();
 	{
 	private:
 		std::string erro_;
@@ -179,6 +181,7 @@ namespace tp2 {
 
 		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
+		virtual ~Celular();
 
 		std::string getNumero()const;
 		Cliente getDono()const;
@@ -210,6 +213,7 @@ namespace tp2 {
 
 	public:
 		Prepago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos, const DataDMA &validade);
+		~Prepago();
 		double get_creditos()const;
 		DataDMA get_validade()const;
 		void set_creditos(double creditos);
@@ -239,6 +243,7 @@ namespace tp2 {
 
 	public:
 		Pospago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
+		~Pospago();
 		DataDMA get_vencimento()const;
 		void set_vencimento(const DataDMA &vencimento);
 		double get_fatura()const;
