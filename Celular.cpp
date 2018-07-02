@@ -7,7 +7,7 @@ using namespace tp2;
 
 
 
-
+int Celular::proximo_num = 0;
 
 Celular::Celular(string numero, const Cliente &dono, vector<Ligacao> listaChamadas)
 {
@@ -55,3 +55,17 @@ this->listaChamadas_ =listaChamadas;
 
 
 
+void Celular::incr_prox_num()
+{
+	proximo_num++;
+}
+
+void Celular::set_prox_num(int n)
+{
+	proximo_num = n;
+}
+
+int Celular::get_prox_num()
+{
+	return proximo_num;
+}

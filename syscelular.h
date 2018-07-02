@@ -173,7 +173,7 @@ namespace tp2 {
 		std::string numero_;
 		Cliente dono_;
 		std::vector<Ligacao> listaChamadas_;
-
+		static int proximo_num;
 
 	public:
 
@@ -197,6 +197,10 @@ namespace tp2 {
 		virtual	void set_credfat(double fatura) = 0;
 		virtual	double get_credfat()const = 0;
 		virtual void realizar_chamada(DataDMA dataLig, int duracao, Hora horalig) = 0;
+
+		static void incr_prox_num();
+		static void set_prox_num(int n);
+		static int get_prox_num();
 
 	};
 
@@ -238,6 +242,7 @@ namespace tp2 {
 	private:
 		DataDMA vencimento_;
 		double fatura_;
+		static const int custo_p_min = 3;
 
 	public:
 		Pospago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento,double fatura);
@@ -284,7 +289,7 @@ namespace tp2 {
 
 		void registrar_ligacao(Celular* C, DataDMA dataLig, int duracao, Hora horalig);
 		std::vector<Celular*> listar_vencidos()const;
-
+		void inicializa_numero(int n);
 
 
 

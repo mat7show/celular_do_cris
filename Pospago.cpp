@@ -48,6 +48,8 @@ void Pospago::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 
 	Ligacao L(dataLig, duracao, horalig);
 	getlistaChamadas().push_back(L);
+
+	set_fatura(get_fatura() + duracao * custo_p_min);
 }
 
 double Pospago::get_credfat()const

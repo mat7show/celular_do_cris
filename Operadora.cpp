@@ -51,7 +51,7 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 
 	try
 	{
-		prox_num = celulares_.size();
+		prox_num = Celular::get_prox_num();
 		_itoa_s(prox_num, buff, 10);
 		string numero_s(buff);
 
@@ -60,12 +60,14 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 
 		if (plano)
 		{
-			celulares_.push_back(new Pospago(numero_s, C, ent, h,40));
+			celulares_.push_back(new Pospago(numero_s, C, ent, h,0));
 		}
 		else
 		{
 			celulares_.push_back(new Prepago(numero_s, C, ent, 0, h));
 		}
+
+		Celular::incr_prox_num();
 	}
 	catch (const ExceptOutras &e)
 	{
@@ -343,4 +345,10 @@ vector<Celular*> Operadora::listar_vencidos()const
 	}
 
 	return ret;
+}
+
+
+void Operadora::inicializa_numero(int n)
+{
+	Celular::set_prox_num(n);
 }
