@@ -28,9 +28,9 @@ void Operadora::inserirCliente(const Cliente &C)
 	{
 		throw ExceptVetorCheio("Vetor de clientes cheio");
 	}
-	else 
+	else
 	{
-		try 
+		try
 		{
 			clientes_.push_back(C);
 		}
@@ -47,8 +47,8 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 	vector<Ligacao> ent;
 	char buff[20];
 	int prox_num;
-	
-	try 
+
+	try
 	{
 		prox_num = celulares_.size();
 		_itoa_s(prox_num, buff, 10);
@@ -126,12 +126,12 @@ void Operadora::excluirCelular(string numero)
 				flag = true;
 				delete celulares_[i];
 				celulares_[i] = celulares_[celulares_.size() - 1];
-				
+
 				celulares_.pop_back();
 				break;
 			}
 		}
-	
+
 
 		if(!flag)  throw ExceptOpIleg("Numero inexistente");
 	}
@@ -143,12 +143,15 @@ void Operadora::excluirCelular(string numero)
 
 void Operadora::creditar(string numero, double valor)
 {
-	try 
+try
 	{
 		for (size_t i = 0; i < celulares_.size(); i++)
 		{
 			if (celulares_[i]->getNumero() == numero)
 			{
+        if(celulares_[i]->get_plano()=="Pos-pago"){throw ExceptOpIleg("Plano incorreto");}
+
+
 				DataDMA v = celulares_[i]->get_vencimento() + 180;
 				double a = celulares_[i]->get_credfat() + valor;
 				celulares_[i]->set_credfat(a);
@@ -164,16 +167,17 @@ void Operadora::creditar(string numero, double valor)
 
 double Operadora::valorconta(string numero)
 {
-	try 
+	try
 	{
 		for (size_t i = 0; i < celulares_.size(); i++)
 		{
 			if (celulares_[i]->getNumero() == numero)
 			{
+if(celulares_[i]->get_plano()=="Pre-pago"){throw ExceptOpIleg ("Plano incorreto");}
 				return celulares_[i]->get_credfat();
 			}
 		}
-	
+
 		//se chega aqui eh pq nao tem a conta
 		throw ExceptOpIleg("Numero de celular inexistente");
 	}
@@ -187,7 +191,7 @@ vector<Ligacao> Operadora::obterExtrato(string numConta)const
 {
 	vector<Ligacao> chamadas_user;
 	bool flag = false;
-	try 
+	try
 	{
 		for (size_t i = 0; i < celulares_.size(); i++)
 		{

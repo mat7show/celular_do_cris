@@ -17,7 +17,8 @@ int Interface::menu()
 {
   int menu=1;
   while (menu) {
-
+  try
+  {
 	for(size_t i = 0; i<erros_global.size(); i++)
 	{
 		cout << erros_global[i] << endl;
@@ -111,7 +112,15 @@ int Interface::menu()
 	  default:
 		  cout << "Comando invalido" << endl;
 	  }
+
   }
+  catch (ExceptOpIleg &e)
+  {
+    string erro = e.what();
+    cout<<erro<<endl;
+  }
+  }
+
 return menu;
 }
 
@@ -209,6 +218,7 @@ void Interface::regliga()
   cin>>mes;
   cout << "Insira o ano da ligacao"<<endl;
   cin>>ano;
+
   DataDMA datalig(dia,mes,ano);
   cout <<endl<< "Insira a duracao em minutos da ligacao"<<endl;
   cin>>duracao;
@@ -231,8 +241,8 @@ void Interface::verconta()
   cout <<endl<< "Insira o numero do celular"<<endl;
   getline(cin,numero);
   getline(cin,numero);
-  this->valorconta(numero);
-
+  double fatura = this->valorconta(numero);
+  cout<<"Fatura: "<<fatura<<endl;
 }
 
 
@@ -247,6 +257,7 @@ void Interface::listacredval(){
     {
       if (temp[i]->getNumero() == numero)
       {
+if(temp[i]->get_plano()=="Pos-pago"){throw ExceptOpIleg("Plano incorreto");}
       double a =  temp[i]->get_credfat();
       DataDMA b = temp[i]->get_vencimento();
 
