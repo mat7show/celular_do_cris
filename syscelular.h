@@ -181,7 +181,6 @@ namespace tp2 {
 
 		Celular(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas);
 		Celular(const Celular &a);
-		virtual ~Celular();
 
 		std::string getNumero()const;
 		Cliente getDono()const;
@@ -213,7 +212,6 @@ namespace tp2 {
 
 	public:
 		Prepago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, double creditos, const DataDMA &validade);
-		~Prepago();
 		double get_creditos()const;
 		DataDMA get_validade()const;
 		void set_creditos(double creditos);
@@ -242,8 +240,7 @@ namespace tp2 {
 		double fatura_;
 
 	public:
-		Pospago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento);
-		~Pospago();
+		Pospago(std::string numero, const Cliente &dono, std::vector<Ligacao> listaChamadas, const DataDMA &vencimento,double fatura);
 		DataDMA get_vencimento()const;
 		void set_vencimento(const DataDMA &vencimento);
 		double get_fatura()const;

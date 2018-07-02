@@ -6,11 +6,11 @@
 using namespace std;
 using namespace tp2;
 
-Pospago::Pospago (string numero,const Cliente &dono, vector<Ligacao> listaChamadas,const DataDMA &vencimento):Celular(numero, dono, listaChamadas)
+Pospago::Pospago (string numero,const Cliente &dono, vector<Ligacao> listaChamadas,const DataDMA &vencimento, double fatura):Celular(numero, dono, listaChamadas)
 {
 
 vencimento_ = vencimento;
-
+fatura_ = fatura;
 }
 
 
@@ -59,4 +59,3 @@ void Pospago::set_credfat(double fatura)
 {
 	fatura_ = fatura;
 }
-

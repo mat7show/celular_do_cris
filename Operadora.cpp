@@ -22,6 +22,7 @@ Operadora::Operadora(string nome, vector<Cliente> clientes, vector<Celular*> cel
   nomeOperadora_ = nome;
 }
 
+
 void Operadora::inserirCliente(const Cliente &C)
 {
 	if (clientes_.max_size() <= clientes_.size())
@@ -59,7 +60,7 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 
 		if (plano)
 		{
-			celulares_.push_back(new Pospago(numero_s, C, ent, h));
+			celulares_.push_back(new Pospago(numero_s, C, ent, h,40));
 		}
 		else
 		{
