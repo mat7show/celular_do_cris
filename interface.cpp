@@ -164,7 +164,7 @@ void Interface::novocliente()
   std::vector<Cliente> temp;
   Cliente clientetemp;
   string cpf_cnpj;
-  int opt;
+  int opt,dia;
   bool plan;
   temp = this->obterListaClientes();
 
@@ -173,19 +173,33 @@ void Interface::novocliente()
   getline(cin,cpf_cnpj);
   cout<<"Digite 0 para prepago ou 1 para pospago"<<endl;
   cin >> opt;
-  if (opt ==0){plan = false;}
-  if (opt ==1){plan = true;}
-  if(opt == 0 || opt ==1)
-  {
 
+  if(opt == 0)
+  {
+    plan = false;
   	for(size_t i=0; i<temp.size(); i++)
   	{
   		if (temp[i].getcpf_cnpj() == cpf_cnpj)
   		{
-        this->criarCelular(temp[i],plan);
+        this->criarCelular(temp[i],plan,0);
       }
     }
 }
+
+if(opt == 1)
+{
+  plan = true;
+  cout<<"Digite o dia da fatura"<<endl;
+  cin >> dia;
+  for(size_t i=0; i<temp.size(); i++)
+  {
+    if (temp[i].getcpf_cnpj() == cpf_cnpj)
+    {
+      this->criarCelular(temp[i],plan,dia);
+    }
+  }
+}
+
 }
 void Interface::excluirc()
 {

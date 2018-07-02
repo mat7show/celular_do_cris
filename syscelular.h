@@ -276,7 +276,7 @@ namespace tp2 {
 		Operadora(std::string nome, std::vector<Cliente> clientes, std::vector<Celular*> contas);
 
 		void inserirCliente(const Cliente &C);
-		void criarCelular(const Cliente &C, bool plano);
+		void criarCelular(const Cliente &C, bool plano,int dia);
 		void excluirCliente(std::string cpf_cnpj);
 		void excluirCelular(std::string numConta);
 		void creditar(std::string numero, double valor);

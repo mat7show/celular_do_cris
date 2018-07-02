@@ -42,7 +42,7 @@ void Operadora::inserirCliente(const Cliente &C)
 	}
 }
 
-void Operadora::criarCelular( const Cliente &C, bool plano)
+void Operadora::criarCelular( const Cliente &C, bool plano,int dia)
 {
 	if (celulares_.max_size() <= celulares_.size()) throw ExceptVetorCheio("Vetor de celulares cheio");
 	vector<Ligacao> ent;
@@ -57,10 +57,13 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 
 		DataDMA h;
 		h = h + 30;
-
 		if (plano)
 		{
-			celulares_.push_back(new Pospago(numero_s, C, ent, h,0));
+      int mes = h.get_mes();
+      int ano = h.get_ano();
+      DataDMA fat(dia,mes,ano);
+      if (!fat.valida()) throw ExceptData("Data invalida");
+			celulares_.push_back(new Pospago(numero_s, C, ent, fat,40));
 		}
 		else
 		{
