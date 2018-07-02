@@ -29,7 +29,7 @@ DataDMA::DataDMA(int dia, int mes, int ano)
   dia_ = dia;
   mes_ = mes;
   ano_ = ano;
-  if (!this->valida()) throw  ExceptData("Data Invalida");
+  
 }
 
 DataDMA::DataDMA(DataDMA const &d)
