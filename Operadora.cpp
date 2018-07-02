@@ -243,7 +243,7 @@ void Operadora::registrar_ligacao(Celular* C, DataDMA dataLig, int duracao, Hora
 }
 
 
-vector<Celular*> Operadora::listar_vencidos()
+vector<Celular*> Operadora::listar_vencidos()const
 {
 	vector<Celular*> ret;
 	DataDMA Hoje;

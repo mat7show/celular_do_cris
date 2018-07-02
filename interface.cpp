@@ -14,97 +14,99 @@ Interface::Interface(string nome,vector<Cliente> clientes,vector<Celular*> celul
 
 int Interface::menu()
 {
-  int menu=0;
+  int menu=1;
+  while (menu) {
 
-	cout << endl << endl
-		 << "      {{{{{{{{{{}}}}}}}}}}" << endl
-		 << "   {{{{{{{{   MENU   }}}}}}}}" << endl
-		 << "      {{{{{{{{{{}}}}}}}}}}" << endl;
-
-
-		cout <<"1.)Cadastrar cliente " << endl
-       << " 2.)Cadastrar celular e plano " << endl
-       << " 3.)Excluir celular " << endl
-       << " 4.)Adicionar creditos (Pre pago) " << endl
-       << " 5.)Registrar ligacao " << endl
-       << " 6.)Ver valor da conta (Pos pago) " << endl
-       << " 7.)Listar Creditos e validade (Pre pago) " << endl
-       << " 8.)Ver extrato de ligacoes " << endl
-       << "9.)Listar os clientes " << endl
-       << "10.)Listar os planos " << endl
-      << "11.)Listar os celulares " << endl
-      << "12.)Listar os vencimentos " << endl
-       << "0.)Sair " << endl;
-			cin >> menu;
-switch (menu)
-{
-case(1):
-cout<<endl<<"{{{{Cadastrar cliente}}}}"<<endl;
-this->novocliente();
-break;
+	  cout << endl << endl
+		  << "      {{{{{{{{{{}}}}}}}}}}" << endl
+		  << "   {{{{{{{{   MENU   }}}}}}}}" << endl
+		  << "      {{{{{{{{{{}}}}}}}}}}" << endl;
 
 
-case(2):
-cout<<endl<<"{{{{Cadastrar celular e plano}}}}"<<endl;
-this->novoplano();
-break;
+	  cout << "1.)Cadastrar cliente " << endl
+		  << " 2.)Cadastrar celular e plano " << endl
+		  << " 3.)Excluir celular " << endl
+		  << " 4.)Adicionar creditos (Pre pago) " << endl
+		  << " 5.)Registrar ligacao " << endl
+		  << " 6.)Ver valor da conta (Pos pago) " << endl
+		  << " 7.)Listar Creditos e validade (Pre pago) " << endl
+		  << " 8.)Ver extrato de ligacoes " << endl
+		  << "9.)Listar os clientes " << endl
+		  << "10.)Listar os planos " << endl
+		  << "11.)Listar os celulares " << endl
+		  << "12.)Listar os vencimentos " << endl
+		  << "0.)Sair " << endl;
+	  cin >> menu;
+	  switch (menu)
+	  {
+	  case(1):
+		  cout << endl << "{{{{Cadastrar cliente}}}}" << endl;
+		  this->novocliente();
+		  break;
 
-case(3):
-cout<<endl<<"{{{{Excluir celular}}}}"<<endl;
-this->excluirc();
-break;
 
-case(4):
-cout<<endl<<"{{{{Adicionar creditos (Pre pago)}}}}"<<endl;
-this->addcreditos();
-break;
+	  case(2):
+		  cout << endl << "{{{{Cadastrar celular e plano}}}}" << endl;
+		  this->novoplano();
+		  break;
 
-case(5):
-cout<<endl<<"{{{{Registrar ligacao}}}}"<<endl;
-this->regliga();
-break;
+	  case(3):
+		  cout << endl << "{{{{Excluir celular}}}}" << endl;
+		  this->excluirc();
+		  break;
 
-case(6):
-cout<<endl<<"{{{{Ver valor da conta(pos pago)}}}}"<<endl;
-this->verconta();
-break;
+	  case(4):
+		  cout << endl << "{{{{Adicionar creditos (Pre pago)}}}}" << endl;
+		  this->addcreditos();
+		  break;
 
-case(7):
-cout<<endl<<"{{{{Listar Creditos e validade (Pre pago)}}}}"<<endl;
-this->listacredval();
-break;
+	  case(5):
+		  cout << endl << "{{{{Registrar ligacao}}}}" << endl;
+		  this->regliga();
+		  break;
 
-case(8):
-cout<<endl<<"{{{{Ver extrato de ligacoes}}}}"<<endl;
-this->extratoliga();
-break;
+	  case(6):
+		  cout << endl << "{{{{Ver valor da conta(pos pago)}}}}" << endl;
+		  this->verconta();
+		  break;
 
-case(9):
-cout<<endl<<"{{{{Listar os clientes}}}}"<<endl;
-this->listaclientes();
-break;
+	  case(7):
+		  cout << endl << "{{{{Listar Creditos e validade (Pre pago)}}}}" << endl;
+		  this->listacredval();
+		  break;
 
-case(10):
-cout<<endl<<"{{{{Listar os planos}}}}"<<endl;
-this->listaplanos();
-break;
+	  case(8):
+		  cout << endl << "{{{{Ver extrato de ligacoes}}}}" << endl;
+		  this->extratoliga();
+		  break;
 
-case(11):
-cout<<endl<<"{{{{Listar os celulares}}}}"<<endl;
-this->listacelulares();
-break;
+	  case(9):
+		  cout << endl << "{{{{Listar os clientes}}}}" << endl;
+		  this->listaclientes();
+		  break;
 
-case(12):
-cout<<endl<<"{{{{Listar os vencimentos}}}}"<<endl;
-this->listavencidos();
-break;
+	  case(10):
+		  cout << endl << "{{{{Listar os planos}}}}" << endl;
+		  this->listaplanos();
+		  break;
 
-case(0):
-cout<<endl<<"{{{{Adeus}}}}"<<endl;
-break;
-default:
-cout<<"Comando invalido"<<endl;
-}
+	  case(11):
+		  cout << endl << "{{{{Listar os celulares}}}}" << endl;
+		  this->listacelulares();
+		  break;
+
+	  case(12):
+		  cout << endl << "{{{{Listar os vencimentos}}}}" << endl;
+		  this->listavencidos();
+		  break;
+
+	  case(0):
+		  cout << endl << "{{{{Adeus}}}}" << endl;
+		  break;
+	  default:
+		  cout << "Comando invalido" << endl;
+	  }
+  }
 return menu;
 }
 
@@ -120,13 +122,13 @@ void Interface::novocliente()
   getline(cin,cpf_cnpj);
   cout<<"Digite o nome do cliente"<<endl;
   getline(cin,nome);
-  getline(cin,nome);
+  //getline(cin,nome);
 
   cout<<"Digite o endereco do cliente"<<endl;
   getline(cin,endereco);
-  getline(cin,endereco);
+  //getline(cin,endereco);
 
-  Cliente a(cpf_cnpj,nome, endereco);
+  Cliente a(nome, cpf_cnpj, endereco);
 
   this->inserirCliente(a);
   //try

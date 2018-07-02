@@ -51,7 +51,9 @@ namespace tp2 {
 		ExceptData(std::string e);
 		std::string what();
 
-	};/*	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
+	};
+
+	class ExceptOutras : public std::runtime_error //ja vem com funcao what();
 	{
 	private:
 		std::string erro_;
@@ -59,7 +61,9 @@ namespace tp2 {
 		ExceptOutras(std::string what);
 
 	};
-*/
+
+
+
 
 
 	class Hora
