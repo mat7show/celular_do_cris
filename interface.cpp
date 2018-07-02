@@ -214,7 +214,8 @@ this->creditar(numero,credito);
 
 void Interface::regliga()
 {
-  int dia, mes, ano,duracao;
+  //int dia, mes, ano;
+  int duracao;
   string numero;
   vector<Celular*> temp;
   temp = this->obterListaCelulares();
