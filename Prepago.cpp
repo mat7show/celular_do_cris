@@ -11,8 +11,8 @@ using namespace tp2;
 Prepago::Prepago (string numero,const Cliente &dono, vector<Ligacao> listaChamadas,double creditos,const DataDMA &validade ):Celular(numero, dono, listaChamadas)
 {
 
-creditos_ = creditos;
-validade_=validade;
+	creditos_ = creditos;
+	validade_=validade;
 
 }
 
@@ -47,15 +47,25 @@ string Prepago::get_plano()
 }
 
 void Prepago::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
-{
+{	
+	if (!dataLig.valida()) throw ExceptData("Data invalida");
+
 	if (duracao*custo_p_min > get_creditos())
 	{
-		throw ExceptCreditoIns("Creditos insuficientes para a chamada");
+		throw ExceptOpIleg("Creditos insuficientes para a chamada");
 	}
-	int novo_cred = get_creditos() - duracao * custo_p_min;
-	set_creditos(novo_cred);
-	Ligacao L(dataLig, duracao, horalig);
-	getlistaChamadas().push_back(L);
+	try 
+	{
+		int novo_cred = get_creditos() - duracao * custo_p_min;
+		set_creditos(novo_cred);
+		Ligacao L(dataLig, duracao, horalig);
+		getlistaChamadas().push_back(L);
+	}
+
+	catch (ExceptOutras e) 
+	{
+		2;
+	};
 }
 
 double Prepago::get_credfat()const

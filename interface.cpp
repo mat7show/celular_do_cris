@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iostream>
 #include "syscelular.h"
 using namespace std;
 using namespace tp2;
@@ -17,6 +18,10 @@ int Interface::menu()
   int menu=1;
   while (menu) {
 
+	for(size_t i = 0; i<erros_global.size(); i++)
+	{
+		cout << erros_global[i] << endl;
+	}
 	  cout << endl << endl
 		  << "      {{{{{{{{{{}}}}}}}}}}" << endl
 		  << "   {{{{{{{{   MENU   }}}}}}}}" << endl
@@ -307,13 +312,14 @@ this->printacliente(clientetemp);
 
 void Interface::listacelulares()const{
 std::vector<Celular*> temp;
-Celular* celulartemp;
+//Celular* celulartemp = new Celular;
 temp = this->obterListaCelulares();
 
 for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
 {
-celulartemp =*i;
-this->printacelular(*celulartemp);
+//celulartemp =*i;
+//this->printacelular(*celulartemp);
+	this->printacelular(**i);
 }
 }
 

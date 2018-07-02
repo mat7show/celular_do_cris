@@ -1,4 +1,5 @@
 #include <string>
+#include <stdexcept>
 
 #include "syscelular.h"
 
@@ -11,17 +12,18 @@ ideias boas pra excessoes:
 
 --na funcao double to string e vice-versa, apenas o catch
 
-
-
-
 */
 
-ExceptCreditoIns::ExceptCreditoIns(std::string e)
+
+
+
+
+ExceptOpIleg::ExceptOpIleg(std::string e)
 {
 	erro_ = e;
 }
 
-std::string ExceptCreditoIns::what()
+std::string ExceptOpIleg::what()
 {
 	return erro_;
 }
@@ -38,15 +40,7 @@ std::string ExceptVetorCheio::what()
 }
 
 
-ExceptContaInex::ExceptContaInex(std::string e)
-{
-	erro_ = e;
-}
 
-std::string ExceptContaInex::what()
-{
-	return erro_;
-}
 
 
 ExceptData::ExceptData(std::string e)
@@ -62,9 +56,17 @@ std::string ExceptData::what()
 
 
 
+
+
+
+
+
 ExceptOutras::ExceptOutras(std::string what) : runtime_error(what)
 {
 	erro_ = what;
 }
+
+
+
 
 

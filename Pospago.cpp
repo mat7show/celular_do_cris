@@ -44,6 +44,8 @@ void Pospago::set_fatura(double fatura)
 
 void Pospago::realizar_chamada(DataDMA dataLig, int duracao, Hora horalig)
 {
+	if (!dataLig.valida()) throw ExceptData("Data invalida");
+
 	Ligacao L(dataLig, duracao, horalig);
 	getlistaChamadas().push_back(L);
 }

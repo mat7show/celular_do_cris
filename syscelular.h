@@ -8,20 +8,26 @@
 //using namespace std;
 
 
+
 namespace tp2 {
 
-	class ExceptCreditoIns
+	
+	static std::vector<std::string> erros_global;
 
+
+	class ExceptOpIleg
 	{
 	private:
 		std::string erro_;
-
 	public:
-		ExceptCreditoIns(std::string e);
+		ExceptOpIleg(std::string e);
 		std::string what();
 	};
+	
 
-	class ExceptVetorCheio
+	
+
+	class ExceptVetorCheio 
 	{
 	private:
 		std::string erro_;
@@ -31,16 +37,6 @@ namespace tp2 {
 
 	};
 
-	class ExceptContaInex
-	{
-	private:
-		std::string erro_;
-
-	public:
-		ExceptContaInex(std::string e);
-		std::string what();
-
-	};
 
 	class ExceptData
 	{
@@ -50,6 +46,7 @@ namespace tp2 {
 	public:
 		ExceptData(std::string e);
 		std::string what();
+
 
 	};
 

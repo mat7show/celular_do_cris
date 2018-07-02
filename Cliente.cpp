@@ -7,9 +7,9 @@ using namespace tp2;
 
 Cliente::Cliente(string name, string id, string add)
 {
-  this->nomeCliente = name;
-  this->cpf_cnpj_ = id;
-  this->endereco = add;
+	this->nomeCliente = name;
+	this->cpf_cnpj_ = id;
+	this->endereco = add;
 
 }
 Cliente::Cliente()

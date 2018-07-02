@@ -26,36 +26,54 @@ void Operadora::inserirCliente(const Cliente &C)
 {
 	if (clientes_.max_size() <= clientes_.size())
 	{
-		throw ExceptVetorCheio("Vetor de clientes cheio!");
+		throw ExceptVetorCheio("Vetor de clientes cheio");
 	}
-	else clientes_.push_back(C);
+	else 
+	{
+		try 
+		{
+			clientes_.push_back(C);
+		}
+		catch (const ExceptOutras &e)
+		{
+			erros_global.push_back(e.what());
+		}
+	}
 }
 
 void Operadora::criarCelular( const Cliente &C, bool plano)
 {
+	if (celulares_.max_size() <= celulares_.size()) throw ExceptVetorCheio("Vetor de celulares cheio");
 	vector<Ligacao> ent;
 	char buff[20];
 	int prox_num;
 	
-	prox_num = celulares_.size();
-	_itoa_s(prox_num, buff, 10);
-	string numero_s(buff);
-
-	DataDMA h;
-	h = h + 30;
-
-	if (plano)
+	try 
 	{
-		
-		Pospago novo(numero_s, C, ent, h);
-		Pospago* novop = &novo;
-		celulares_.push_back(novop);
+		prox_num = celulares_.size();
+		_itoa_s(prox_num, buff, 10);
+		string numero_s(buff);
+
+		DataDMA h;
+		h = h + 30;
+
+		if (plano)
+		{
+
+			Pospago novo(numero_s, C, ent, h);
+			Pospago* novop = &novo;
+			celulares_.push_back(novop);
+		}
+		else
+		{
+			Prepago novo(numero_s, C, ent, 0, h);
+			Prepago* novop = &novo;
+			celulares_.push_back(novop);
+		}
 	}
-	else 
+	catch (const ExceptOutras &e)
 	{
-		Prepago novo(numero_s, C, ent, 0, h);
-		Prepago* novop = &novo;
-		celulares_.push_back(novop);
+		erros_global.push_back(e.what());
 	}
 }
 
@@ -70,90 +88,125 @@ void Operadora::criarCelular( const Cliente &C, bool plano)
 void Operadora::excluirCliente(std::string cpf_cnpj)
 {
 	bool flag = false;
-	for(size_t i=0; i<clientes_.size(); i++)
-	{
-		if (clientes_[i].getcpf_cnpj() == cpf_cnpj)
+	try {
+		for (size_t i = 0; i < clientes_.size(); i++)
 		{
-			flag = true;
-			for (size_t j =0; j<celulares_.size();j++)
+			if (clientes_[i].getcpf_cnpj() == cpf_cnpj)
 			{
-				if (celulares_[j]->getDono().getcpf_cnpj() == cpf_cnpj)
+				flag = true;
+				for (size_t j = 0; j < celulares_.size(); j++)
 				{
-					//joga excess�o do cliente ter celular
+					if (celulares_[j]->getDono().getcpf_cnpj() == cpf_cnpj)
+					{
+						throw ExceptOpIleg("Cliente tem celular e nao pode ser removido");
+						//joga excess�o do cliente ter celular
+					}
 				}
+
+				//sobrescrevo o alvo com o ultimo maluco e removo a duplicata no ultimo.
+				clientes_[i] = clientes_[clientes_.size() - 1];
+				clientes_.pop_back();
 			}
 
-			//sobrescrevo o alvo com o ultimo maluco e removo a duplicata no ultimo.
-			clientes_[i] = clientes_[clientes_.size() - 1];
-			clientes_.pop_back();
 		}
-
-
+		if (!flag)  throw ExceptOpIleg("Cliente inexistente");
 	}
-	if (!flag)  throw ExceptContaInex("Cliente inexistente");
+
+	catch (ExceptOutras e)
+	{
+		erros_global.push_back(e.what());
+	}
 }
 
 void Operadora::excluirCelular(string numero)
 {
 	bool flag = false;
-	for(size_t i = 0; i<celulares_.size(); i++)
+	try
 	{
-		if(celulares_[i]->getNumero() == numero)
+
+		for (size_t i = 0; i < celulares_.size(); i++)
 		{
-		  flag = true;
-		  celulares_[i] = celulares_[celulares_.size() - 1];
-		  celulares_.pop_back();
-		  break;
+			if (celulares_[i]->getNumero() == numero)
+			{
+				flag = true;
+				celulares_[i] = celulares_[celulares_.size() - 1];
+				celulares_.pop_back();
+				break;
+			}
 		}
+	
+
+		if(!flag)  throw ExceptOpIleg("Numero inexistente");
 	}
-	if(!flag)  throw ExceptContaInex("Numero inexistente");
+	catch (const ExceptOutras &e)
+	{
+		erros_global.push_back(e.what());
+	}
 }
 
 void Operadora::creditar(string numero, double valor)
 {
-  //excessão caso o plano não for prepago
-  for(size_t i = 0; i<celulares_.size(); i++)
-  {
-    if(celulares_[i]->getNumero() == numero)
-    {
-		DataDMA v = celulares_[i]->get_vencimento() + 180;
-		double a = celulares_[i]->get_credfat() + valor;
-		celulares_[i]->set_credfat(a);
-		celulares_[i]->set_vencimento(v);
-    }
-  }
+	try 
+	{
+		for (size_t i = 0; i < celulares_.size(); i++)
+		{
+			if (celulares_[i]->getNumero() == numero)
+			{
+				DataDMA v = celulares_[i]->get_vencimento() + 180;
+				double a = celulares_[i]->get_credfat() + valor;
+				celulares_[i]->set_credfat(a);
+				celulares_[i]->set_vencimento(v);
+			}
+		}
+	}
+	catch (const ExceptOutras &e)
+	{
+		erros_global.push_back(e.what());
+	}
 }
 
 double Operadora::valorconta(string numero)
 {
-//excessão caso não for pospago
-  for(size_t i = 0; i<celulares_.size(); i++)
-  {
-    if(celulares_[i]->getNumero() == numero)
-    {
-      return celulares_[i]->get_credfat();
-    }
-  }
-  //se chega aqui eh pq nao tem a conta
-  throw ExceptContaInex("Numero inexistente");
+	try 
+	{
+		for (size_t i = 0; i < celulares_.size(); i++)
+		{
+			if (celulares_[i]->getNumero() == numero)
+			{
+				return celulares_[i]->get_credfat();
+			}
+		}
+	
+		//se chega aqui eh pq nao tem a conta
+		throw ExceptOpIleg("Numero de celular inexistente");
+	}
+	catch (const ExceptOutras &e)
+	{
+		erros_global.push_back(e.what());
+	}
 }
 
 vector<Ligacao> Operadora::obterExtrato(string numConta)const
 {
 	vector<Ligacao> chamadas_user;
 	bool flag = false;
-
-	for (size_t i = 0; i<celulares_.size(); i++)
+	try 
 	{
-		if (celulares_[i]->getNumero() == numConta)
+		for (size_t i = 0; i < celulares_.size(); i++)
 		{
-			flag = true;
-			chamadas_user = celulares_[i]->getlistaChamadas();
-			break;
+			if (celulares_[i]->getNumero() == numConta)
+			{
+				flag = true;
+				chamadas_user = celulares_[i]->getlistaChamadas();
+				break;
+			}
 		}
+		if (!flag)  throw ExceptOpIleg("Numero de celular inexistente");
 	}
-	if (!flag)  throw ExceptContaInex("Numero inexistente");
-
+	catch (const ExceptOutras &e)
+	{
+		erros_global.push_back(e.what());
+	}
 	return chamadas_user;
 }
 
@@ -163,26 +216,32 @@ vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial)const
 	vector<Ligacao> chamadas_ret;
 	bool flag = false;
 
-	for (size_t i = 0; i<celulares_.size(); i++)
-	{
-		if (celulares_[i]->getNumero() == numConta)
+	try {
+
+		for (size_t i = 0; i < celulares_.size(); i++)
 		{
-			flag = true;
-			chamadas_user = celulares_[i]->getlistaChamadas();
-			break;
+			if (celulares_[i]->getNumero() == numConta)
+			{
+				flag = true;
+				chamadas_user = celulares_[i]->getlistaChamadas();
+				break;
+			}
+		}
+		if (!flag)  throw ExceptOpIleg("Numero de celular inexistente");
+
+
+		for (size_t i = 0; i < chamadas_user.size(); i++)
+		{
+			if (chamadas_user[i].get_data_ligacao() > dInicial)
+			{
+				chamadas_ret.push_back(chamadas_user[i]);
+			}
 		}
 	}
-	if (!flag)  throw ExceptContaInex("Numero inexistente");
-
-
-	for (size_t i = 0; i < chamadas_user.size(); i++)
+	catch (const ExceptOutras &e)
 	{
-		if (chamadas_user[i].get_data_ligacao() > dInicial)
-		{
-			chamadas_ret.push_back(chamadas_user[i]);
-		}
+		erros_global.push_back(e.what());
 	}
-
 	return chamadas_ret;
 }
 
@@ -192,16 +251,19 @@ std::vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial, 
 	vector<Ligacao> chamadas_ret;
 	bool flag = false;
 
-	for (size_t i = 0; i<celulares_.size(); i++)
+	try
 	{
-		if (celulares_[i]->getNumero() == numConta)
+
+		for (size_t i = 0; i < celulares_.size(); i++)
 		{
-			flag = true;
-			chamadas_user = celulares_[i]->getlistaChamadas();
-			break;
+			if (celulares_[i]->getNumero() == numConta)
+			{
+				flag = true;
+				chamadas_user = celulares_[i]->getlistaChamadas();
+				break;
+			}
 		}
-	}
-	if (!flag) throw ExceptContaInex("Numero inexistente");//throw excessao de conta inexistente
+		if (!flag) throw ExceptOpIleg("Numero de celular inexistente");//throw excessao de conta inexistente
 
 
 		for (size_t i = 0; i < chamadas_user.size(); i++)
@@ -211,7 +273,11 @@ std::vector<Ligacao> Operadora::obterExtrato(string numConta, DataDMA dInicial, 
 				chamadas_ret.push_back(chamadas_user[i]);
 			}
 		}
-
+	}
+	catch (const ExceptOutras &e)
+	{
+		erros_global.push_back(e.what());
+	}
 	return chamadas_ret;
 
 }
@@ -229,17 +295,26 @@ vector<Celular*> Operadora::obterListaCelulares()const
 
 void Operadora::registrar_ligacao(Celular* C, DataDMA dataLig, int duracao, Hora horalig)
 {
-	bool flag = false;
-	Ligacao L(dataLig, duracao, horalig);
-	for(size_t i=0; i < celulares_.size(); i++)
+	if (!dataLig.valida()) throw ExceptData("Data invalida");
+
+	try
 	{
-		if(C->getNumero() == celulares_[i]->getNumero())
+		bool flag = false;
+		Ligacao L(dataLig, duracao, horalig);
+		for (size_t i = 0; i < celulares_.size(); i++)
 		{
-			flag = true;
-			C->realizar_chamada(dataLig, duracao, horalig);
+			if (C->getNumero() == celulares_[i]->getNumero())
+			{
+				flag = true;
+				C->realizar_chamada(dataLig, duracao, horalig);
+			}
 		}
+		if (!flag) throw ExceptOpIleg("Numero de celular inexistente");  //excessao de nao tem esse numero
 	}
-	if (!flag) throw ExceptContaInex("Numero inexistente");  //excessao de nao tem esse numero
+	catch (const ExceptOutras &e)
+	{
+		erros_global.push_back(e.what());
+	}
 }
 
 
@@ -247,14 +322,22 @@ vector<Celular*> Operadora::listar_vencidos()const
 {
 	vector<Celular*> ret;
 	DataDMA Hoje;
+	if (!Hoje.valida()) throw ExceptData("Data invalida");
 
-	for (size_t i = 0; i < celulares_.size(); i++)
+	try
 	{
-
-		if (celulares_[i]->get_vencimento() <= Hoje)
+		for (size_t i = 0; i < celulares_.size(); i++)
 		{
-			ret.push_back(celulares_[i]);
+
+			if (celulares_[i]->get_vencimento() <= Hoje)
+			{
+				ret.push_back(celulares_[i]);
+			}
 		}
+	}
+	catch (const ExceptOutras &e)
+	{
+		erros_global.push_back(e.what());
 	}
 
 	return ret;

@@ -11,9 +11,10 @@ using namespace tp2;
 
 Celular::Celular(string numero, const Cliente &dono, vector<Ligacao> listaChamadas)
 {
-  this->numero_ = numero;
-  this->dono_ = dono;
-  this->listaChamadas_ = listaChamadas;
+	
+	this->numero_ = numero;
+	this->dono_ = dono;
+	this->listaChamadas_ = listaChamadas;
   
 }
 
@@ -31,7 +32,7 @@ return numero_;
 
 Cliente Celular::getDono ()const
 {
-return dono_;
+	return dono_;
 }
 
 vector<Ligacao> Celular::getlistaChamadas ()const
