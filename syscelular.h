@@ -280,7 +280,7 @@ namespace tp2 {
 		std::vector<Celular*> obterListaCelulares()const;
 
 		void registrar_ligacao(Celular* C, DataDMA dataLig, int duracao, Hora horalig);
-		std::vector<Celular*> listar_vencidos();
+		std::vector<Celular*> listar_vencidos()const;
 
 
 
@@ -292,7 +292,7 @@ namespace tp2 {
 		Interface(std::string nome, std::vector<Cliente> clientes, std::vector<Celular*> celulares);
 		int menu();
 		void novocliente();
-		//void novoplano();
+		void novoplano();
 		void excluirc();
 		void addcreditos();
 		void regliga();
@@ -302,8 +302,10 @@ namespace tp2 {
 		void printacliente(const Cliente &clientet)const;
 		void listaclientes()const;
 		void printacelular(const Celular &celular)const;
-
-
+		void listacelulares()const;
+		void listaplanos()const;
+		void printaplano(Celular* celular)const;
+		void listavencidos()const;
 
 
 	};

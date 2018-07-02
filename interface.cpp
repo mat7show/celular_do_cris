@@ -43,12 +43,12 @@ cout<<endl<<"{{{{Cadastrar cliente}}}}"<<endl;
 this->novocliente();
 break;
 
-/*
+
 case(2):
 cout<<endl<<"{{{{Cadastrar celular e plano}}}}"<<endl;
 this->novoplano();
 break;
-*/
+
 case(3):
 cout<<endl<<"{{{{Excluir celular}}}}"<<endl;
 this->excluirc();
@@ -78,27 +78,27 @@ case(8):
 cout<<endl<<"{{{{Ver extrato de ligacoes}}}}"<<endl;
 this->extratoliga();
 break;
-/*
+
 case(9):
 cout<<endl<<"{{{{Listar os clientes}}}}"<<endl;
-this->listacliente();
+this->listaclientes();
 break;
 
 case(10):
 cout<<endl<<"{{{{Listar os planos}}}}"<<endl;
-this->listaplano();
+this->listaplanos();
 break;
 
 case(11):
 cout<<endl<<"{{{{Listar os celulares}}}}"<<endl;
-this->listacelular();
+this->listacelulares();
 break;
 
 case(12):
 cout<<endl<<"{{{{Listar os vencimentos}}}}"<<endl;
-this->listavencimento();
+this->listavencidos();
 break;
-*/
+
 case(0):
 cout<<endl<<"{{{{Adeus}}}}"<<endl;
 break;
@@ -133,70 +133,34 @@ void Interface::novocliente()
   cout<<"Cliente inserido"<<endl;
   }
 
-/*
-void Interface::novoplano(){
-  string numero;
-  int opt, dia, mes, ano;
-  double credito, fatura;
-vector<Celular*> temp;
 
-temp = this->obterListaCelulares();
-bool existe = false;
+  void Interface::novoplano(){
+  std::vector<Cliente> temp;
+  Cliente clientetemp;
+  string cpf_cnpj;
+  int opt;
+  bool plan;
+  temp = this->obterListaClientes();
 
-cout <<endl<< "Insira o numero de celular"<<endl;
-getline(cin,numero);
-getline(cin,numero);
-
-cout <<endl<< "Insira 0 para prepago ou 1 para pospago"<<endl;
-cin>>opt;
-
-if (opt = 1)
-{
-  cout << "Insira o dia do vencimento"<<endl;
-  cin>>dia;
-  cout << "Insira o mes do vencimento"<<endl;
-  cin>>mes;
-  cout << "Insira o ano do vencimento"<<endl;
-  cin>>ano;
-  DataDMA data(dia,mes,ano);
-
-for (size_t i = 0; i<temp.size(); i++)
-{
-  if (temp[i].getNumero() == numero)
+  cout<<"Digite o cpf ou cnpj do cliente"<<endl;
+  getline(cin,cpf_cnpj);
+  getline(cin,cpf_cnpj);
+  cout<<"Digite 0 para prepago ou 1 para pospago"<<endl;
+  cin >> opt;
+  if (opt ==0){plan = false;}
+  if (opt ==1){plan = true;}
+  if(opt == 0 || opt ==1)
   {
-    existe = true;
-    this->criarCelular(temp[i],data);
-    i=temp.size();
-  }
-}
-}
-if (opt = 0)
-{
-  cout << "Insira o dia da validade"<<endl;
-  cin>>dia;
-  cout << "Insira o mes da validade"<<endl;
-  cin>>mes;
-  cout << "Insira o ano da validade"<<endl;
-  cin>>ano;
-  DataDMA data(dia,mes,ano);
-cout <<endl<< "Insira a quantidade de creditos"<<endl;
-cin>> credito;
-for (size_t i = 0; i<temp.size(); i++)
-{
-  if (temp[i].getNumero() == numero)
-  {
-    existe = true;
-    this->criarCelular(temp[i],data,credito);
-    i=temp.size();
-  }
-}
 
+  	for(size_t i=0; i<temp.size(); i++)
+  	{
+  		if (temp[i].getcpf_cnpj() == cpf_cnpj)
+  		{
+        this->criarCelular(temp[i],plan);
+      }
+    }
 }
-
-
 }
-
-*/
 void Interface::excluirc()
 {
   string numero;
@@ -293,7 +257,7 @@ void Interface::listacredval(){
 
 }
 
-/*
+
 void Interface::extratoliga()
 {
   string numero;
@@ -323,7 +287,7 @@ DataDMA dfim(dfinal,mfinal,afinal);
 
 temp = this->obterExtrato(numero,dini,dfim);
 }
-*/
+
 
 void Interface::listaclientes()const{
 std::vector<Cliente> temp;
@@ -336,47 +300,47 @@ clientetemp =*i;
 this->printacliente(clientetemp);
 }
 }
-/*
-void Interface::listaplanos()const{
-std::vector<Celular*> temp;
-Celular celulartemp;
-temp = this->obterListaPlanos();
 
-for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
-{
-celulartemp =*i;
-this->printaplano(celulartemp);
-}
-}
-*/
 
-/*
+
 void Interface::listacelulares()const{
 std::vector<Celular*> temp;
-Celular celulartemp;
+Celular* celulartemp;
 temp = this->obterListaCelulares();
 
 for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
 {
 celulartemp =*i;
-this->printacelular(celulartemp);
+this->printacelular(*celulartemp);
 }
 }
-*/
 
-/*
-void Interface::listavencimentos()const{
+void Interface::listaplanos()const{
 std::vector<Celular*> temp;
-Celular celulartemp;
-temp = this->obterListaPlanos();
+Celular* celulartemp;
+temp = this->obterListaCelulares();
 
 for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
-{
-celulartemp =*i;
-this->printaplano(celulartemp);
+  {
+    celulartemp =*i;
+    this->printaplano(celulartemp);
+  }
 }
+
+
+
+void Interface::listavencidos()const{
+std::vector<Celular*> temp;
+Celular* celulartemp;
+temp = this->listar_vencidos();
+
+for(std::vector<Celular*>::const_iterator i = temp.begin(); i != temp.end(); ++i)
+  {
+    celulartemp =*i;
+    this->printaplano(celulartemp);
+  }
 }
-*/
+
 
 
 void Interface::printacliente(const Cliente &clientet)const
@@ -391,6 +355,34 @@ void Interface::printacelular(const Celular &celular)const{
   cout<<endl<<endl<<"Numero: "<< celular.getNumero();
   cout<<endl<<endl<<"Dono: ";
   this->printacliente(c);
+}
 
+void Interface::printaplano( Celular* celular)const{
+  this->printacelular(*celular);
+  string plano = celular->get_plano();
+  if (plano =="Pos-pago")
+  {
+    double a =  celular->get_credfat();
+    DataDMA b = celular->get_vencimento();
 
+    int dia = b.get_dia();
+    int mes = b.get_mes();
+    int ano = b. get_ano();
+
+    cout<< "Fatura : "<<a<<endl;
+    cout<< "Vencimento: "<<dia<<"/"<<mes<<"/"<<ano;
+  }
+
+  if (plano =="Pre-pago")
+  {
+    double a =  celular->get_credfat();
+    DataDMA b = celular->get_vencimento();
+
+    int dia = b.get_dia();
+    int mes = b.get_mes();
+    int ano = b. get_ano();
+
+    cout<< "Creditos : "<<a<<endl;
+    cout<< "Validade: "<<dia<<"/"<<mes<<"/"<<ano;
+  }
 }
