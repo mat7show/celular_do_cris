@@ -40,7 +40,7 @@ int Interface::menu()
 		  << "9.)Listar os clientes " << endl
 		  << "10.)Listar os planos " << endl
 		  << "11.)Listar os celulares " << endl
-		  << "12.)Listar os vencimentos " << endl
+		  << "12.)Listar vencidos " << endl
 		  << "0.)Sair " << endl;
 	  cin >> menu;
 	  switch (menu)
@@ -102,7 +102,7 @@ int Interface::menu()
 		  break;
 
 	  case(12):
-		  cout << endl << "{{{{Listar os vencimentos}}}}" << endl;
+		  cout << endl << "{{{{Listar vencidos}}}}" << endl;
 		  this->listavencidos();
 		  break;
 
