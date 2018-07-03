@@ -63,7 +63,7 @@ void Operadora::criarCelular( const Cliente &C, bool plano,int dia)
       int ano = h.get_ano();
       DataDMA fat(dia,mes,ano);
       if (!fat.valida()) throw ExceptData("Data invalida");
-			celulares_.push_back(new Pospago(numero_s, C, ent, fat,40));
+			celulares_.push_back(new Pospago(numero_s, C, ent, fat,0));
 		}
 		else
 		{
@@ -179,18 +179,23 @@ double Operadora::valorconta(string numero)
 		{
 			if (celulares_[i]->getNumero() == numero)
 			{
-if(celulares_[i]->get_plano()=="Pre-pago"){throw ExceptOpIleg ("Plano incorreto");}
+				if (celulares_[i]->get_plano() == "Pre-pago")
+				{
+					throw ExceptOpIleg("Plano incorreto");
+				}
 				return celulares_[i]->get_credfat();
 			}
 		}
-
-		//se chega aqui eh pq nao tem a conta
-		throw ExceptOpIleg("Numero de celular inexistente");
 	}
+
 	catch (const ExceptOutras &e)
 	{
 		erros_global.push_back(e.what());
 	}
+	//se chega aqui eh pq nao achou cel
+	throw ExceptOpIleg("Numero de celular nao encontrado/vetor inconsistente");
+	
+	
 }
 
 vector<Ligacao> Operadora::obterExtrato(string numConta)const
